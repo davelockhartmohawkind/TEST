@@ -44,11 +44,11 @@ h2 {
 
 h1 {
 	font-size: 32px;
-    text-align:left;
+   
 }
 
 h2 {
-	font-size: 32px;
+	font-size: 18px;
 }
 
 h3 {
@@ -106,7 +106,8 @@ body.color-1 .bg-color{
 	background: #e74c3c;
 }
 body.color-1 hr {
-	border-bottom: 1px solid #e74c3c;
+	border-bottom: 1px solid #e74c3c;#
+e
 }
 body.color-1 span.highlight{
 	color: #e74c3c;
@@ -270,42 +271,42 @@ body.color-6 #footer {
 	padding: 20px 0 20px 0;
 }
 
-body.color-7::-moz-selection {background: #3498db; color: #fff; }
-body.color-7::selection {background: #3498db; color: #fff; }
+body.color-7::-moz-selection {background:#666; color: #fff; }
+body.color-7::selection {background: #666; color: #fff; }
 body.color-7 a{
-	color: #3498db;
+	color: #666;
 	text-decoration: none;
-	border-bottom: 1px solid #3498db;
+	border-bottom: 1px solid #666;
 }
 body.color-7 div#top-nav #fixed-nav li a:hover {
-	color: #3498db;
+	color: #666;
 }
 body.color-7 div#top-nav #fixed-nav li.current a {
-	border-bottom: 3px solid #3498db;
+	border-bottom: 3px solid #666;
 }
 body.color-7 .bg-color{
-	background: #3498db;
-    background-color:#3498db ;
-    background-image:linear-gradient(top, #3498db 0%, #B4D9F1 51%);
-    background-image:-webkit-linear-gradient(top, #3498db 0%, #B4D9F1 51%);
-    background-image:-ms-linear-gradient(top, #3498db 0%, #B4D9F1 51%);
+	background: #666;
+    background-color:#666 ;
+    background-image:linear-gradient(top, #666 0%, #FFFFFF 51%);
+    background-image:-webkit-linear-gradient(top, #666 0%, #FFFFFF 51%);
+    background-image:-ms-linear-gradient(top, #666 0%, #FFFFFF 51%);
     background-image:-webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0, #3498db),
-        color-stop(0.51, #B4D9F1)
+        color-stop(0, #666),
+        color-stop(0.51, #FFFFFF)
     );
 }
 body.color-7 hr {
-	border-bottom: 1px solid #3498db;
+	border-bottom: 1px solid #666;
 }
 body.color-7 span.highlight{
-	color: #3498db;
+	color: #f00;
 }
 body.color-7 #footer {
 	font-weight: bold;
-	background: #3498db;
+	background: #666;
 	color: #fff;
 	text-align: center;
 	font-size: 13px;
@@ -398,7 +399,7 @@ div#top-nav #fixed-nav li.current a {
 	display: inline-block;
 	width: 100%;
 	margin-top: 50px;
-	height: 150px;
+	height:150px;
 }
 .home .hero{
 	margin-top: 0px;
@@ -498,7 +499,8 @@ hr.grey {
 
 .title{
 	text-align: center;
-	margin-bottom: 40px;
+	margin-bottom: 10px;
+   /* margin-bottom: 40px;*/
 }
 .title h2{
 	font-weight: bold;
@@ -517,7 +519,13 @@ margin: 0px;
 }
 .clear{
 	clear: both;
-}
+l}i
+ex: 99999;
+		border-right: 1px solid #D6D6D6;
+		border-bottom: 1px ls99999;
+		border-right: 1px solid #D6D6D6;
+		border-bottom: 1px soliol
+d 
 #footer {
 	font-weight: bold;
 	color: #fff;

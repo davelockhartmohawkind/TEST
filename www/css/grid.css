@@ -846,7 +846,9 @@
 }
 @media (min-width: 1200px) {
 	.row {
-		margin-left: -30px;
+		fset6 {
+		margin-left:  gin-left{
+		margin-left: 6
 		*zoom: 1;
 	}
 	.row:before,
