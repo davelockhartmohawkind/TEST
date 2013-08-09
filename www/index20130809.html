@@ -18,34 +18,14 @@
 
 	</head>
 	<body>
-        
 		<div data-role="page" data-theme="a">
-           
-     <div data-role="header" data-position="fixed"   >
-         <table><tr><td>
-	 <img  src="assets/Carpet_Calc_Icon_v1/Carpet_Calc_Icon_v1/carpetcalc_icon_DRAFT.png"  width="48" height="48" />
-             </td><td>
-         <a id="topMenuDealer" href="#panelDealer" data-role="button" data-icon="home"  data-theme="a" data-inline="true">Dealer</a>
-        <a id="topMenuWholesale"  href="#panelWholesale" data-role="button" data-icon="bars"  data-theme="a" data-inline="true">Wholesale</a>
-        <a id="topMenuRetail"  href="#panelRetail" data-role="button" data-icon="bars"  data-theme="a" data-inline="true">Retail</a>
-        <a id="topMenuSettings"  href="#panelSettings" data-role="button" data-icon="gear"  data-theme="a" data-inline="true">Settings</a>
 
-</td></tr></table>
-		  <!-- <img  src="assets/Carpet_Calc_Icon_v1/Carpet_Calc_Icon_v1/carpetcalc_icon_DRAFT.png"  width="48" height="48" />
-         
-              <a href="index.html" data-role="button" data-icon="bars"  data-iconpos="top" >Wholesale</a>
-             <a href="index.html" data-role="button" data-icon="home" data-iconpos="top" >Dealer</a>
-          <a href="index.html" data-role="button" data-icon="bars" data-iconpos="top" >Retail</a> -->
-               
-       
-           
-</div>
-           <div  id="panelDealer" data-role="collapsible" data-collapsed="false" > <!--collapsible-->
-         <!--   <div data-role="panel" id="panelDealer"  >-->
+            <div data-role="collapsible"  > <!--collapsible-->
                 <h4>Dealer</h4>
     
-           
-               
+			    <div data-role="header" data-position="inline">
+				<!--<h1>Dealer Settings</h1>-->
+			    </div>
 			    <div data-role="content" data-theme="a"> <!--content-->
 	                       <a href="MustSelectDealer.html" data-rel="dialog" data-transition="flip">Detailed Instructions</a>
                     <div  data-role="fieldcontain" >
@@ -151,19 +131,18 @@
                         <div data-role="popup" id="popUpEnterDealerName" data-overlay-theme="b">
                                 <p>Enter a Dealer Name Please<p>
                         </div>
-                        <a href="#" id="inputBtnSave"data-role="button" data-inline="true" >Save</a>
+                        <a href="#" id="inputBtnSave"data-role="button" data-inline="true">Save</a>
                         <a href="#" id="inputBtnDelete"data-role="button" data-inline="true">Delete</a>
-                        <a href="#" id="inputBtnCancel"data-role="button" data-inline="true"  >Cancel</a>
-                       <!-- class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext="Processing"-->
-                        <!--<button class="hide-page-loading-msg" data-inline="true" data-icon="delete">Hide</button>-->
+                        <a href="#" id="inputBtnCancel"data-role="button" data-inline="true">Cancel</a>
+
                     </div> <!--buttons-->
                  
                  </div> <!--content-->
             </div><!--collapsible-->
 
-            <div  id="panelWholesale" data-role="collapsible" data-collapsed="true" > <!--collapsible-->
-                <h4 >Wholesale</h4>
-                <h3   ><a href="." data-rel="external" id="headerWholesaleDealerName">No Dealer Selected</a></h3>
+            <div data-role="collapsible"> <!--collapsible-->
+                <h4>Wholesale</h4>
+                <h3><a href="." data-rel="external" id="headerWholesaleDealerName">No Dealer Selected</a></h3>
                 <p id="headerWholesaleDealerDetails">No Details </p>
 
                 <table data-role="table" id="tableWholesale" data-mode="reflow" class="ui-responsive table-stroke">
@@ -212,14 +191,12 @@
 
                       </td>
                     </tr>-->
-
-                    
                   </tbody>
                </table>
             </div> <!--collapsible-->
                <!-- Use this for hiding the progress spinner
                               <button class="hide-page-loading-msg" data-inline="true" data-icon="delete">Hide</button> -->
-            <div   data-role="collapsible" id="panelRetail" data-collapsed="true" > <!--collapsible-->
+            <div data-role="collapsible"> <!--collapsible-->
                 <h4>Retail</h4>
                 <h3><a href="." id="headerRetailDealerName" data-rel="external">No Dealer Selected</a></h3>
                 <p id="headerRetailDealerDetails" >No Details</p>
@@ -269,9 +246,10 @@
                </table>
             </div> <!--collapsible-->
 
-            
+
+		
             </div><!-- page-->
-     
+
 
           <script >
               $(document).ready(function () {
@@ -305,9 +283,6 @@
                   $('#inputBtnCancel').click(onCancelDealerClick);
                   $('#inputBtnDelete').click(onDeleteDealerClick);
 
-                  $('#topMenuDealer').click(onPanelDealerClick);
-                  $('#topMenuWholesale').click(onPanelWholesaleClick);
-                  $('#topMenuRetail').click(onPanelRetailClick);
 
                   //$('#inputDealerSelection').removeClass("ui-hidden-accessible");
 
@@ -1016,28 +991,7 @@
                   localStorage['mohawkRetail'] = JSON.stringify(RetailPriceCalcs);
               }
 
-              function onPanelDealerClick() {
-                  $('#panelDealer').trigger('expand');
-                  $('#panelRetail').trigger('collapse');
-                  $('#panelWholesale').trigger('collapse');
-                  location.href = "#panelDealer";
-              }
 
-              function onPanelWholesaleClick() {
-
-                  $('#panelDealer').trigger('collapse');
-                  $('#panelRetail').trigger('collapse');
-                  $('#panelWholesale').trigger('expand');
-                  location.href = "#panelWholesale";
-              }
-
-              function onPanelRetailClick() {
-
-                  $('#panelDealer').trigger('collapse');
-                  $('#panelRetail').trigger('expand');
-                  $('#panelWholesale').trigger('collapse');
-                  location.href = "#panelRetail";
-              }
 
               function onWholesaleCostSaveButtonClick() {
                   var myArray = this.id.split('_');
@@ -1721,17 +1675,6 @@
                   var dealerName = $("#inputDealerSelection").val();
                   setDealerData(dealerName);
                   hideButtons();
-
-                  //cue the page loader 			
-                  //$.mobile.pageLoading();
-                  $.mobile.loadingMessage('hello');
-                  $.mobile.showPageLoadingMsg();
-                 // $.mobile.hidePageLoadingMsg();
-                  //hide the page loader 			
-                 // $.mobile.pageLoading(true);
-
-
-
                   //showButtons();
               }
               function onDeleteDealerClick() {
