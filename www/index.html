@@ -434,7 +434,7 @@
 
                   if (data == undefined || data == null || data == "") {
                       $("#tbodyRetail").empty();
-                      addBlankRetailRow(dealerObject.retailYd);
+                      addBlankRetailRow(dealerObject.isRetailYd);
                       return;
                   }
 
@@ -451,7 +451,7 @@
                   //update UI with data
                   if (filteredDealer.length < 1) {
                       $("#tbodyRetail").empty();
-                      addBlankRetailRow(dealerObject.retailYd);
+                      addBlankRetailRow(dealerObject.isRetailYd);
                       return;
                   }
 
@@ -553,13 +553,13 @@
                           }
 
                           
-                          addRetailRow(retailPriceCalc.productName, retailPriceCalc.wholesaleYd, yardby9, retailYd, retailFt, false, true, retailPriceCalc.itemId, dealerObject.retailYd);
+                          addRetailRow(retailPriceCalc.productName, retailPriceCalc.wholesaleYd, yardby9, retailYd, retailFt, false, true, retailPriceCalc.itemId, dealerObject.isRetailYd);
                       }
 
 
                   });
                   //add a blank row
-                  addBlankRetailRow(dealerObject.retailYd);
+                  addBlankRetailRow(dealerObject.isRetailYd);
 
               }
 
@@ -680,13 +680,17 @@
                           var total = 0;
                           var multiplier = 0;
                           var ydWithMarkup = retailYdWithMarkup;
-                          var ydWholesale = wholesaleYd;
+                          var ydWholesale = parseFloat(wholesaleYd);
                           if (dealerObject.useprofit == "false") {
 
                               multiplier = parseInt(dealerObject.profit) / 100 + 1;
-                              total = ((multiplier * (ydWithMarkup + ydWholesale)) + retailYd).toFixed(2);
+                              total = ((multiplier * (ydWithMarkup + ydWholesale2)) + retailYd).toFixed(2);
                           }
                           else {
+
+                              var testt = parseFloat((1 - (parseFloat(dealerObject.markup) / 100)).toFixed(2));
+                              var test = ((ydWithMarkup + ydWholesale) / testt);
+                              test = (test + retailYd).toFixed(2);
 
                               multiplier = parseFloat((1 - (parseFloat(dealerObject.markup) / 100)).toFixed(2));
                               total = (((ydWithMarkup + ydWholesale) / multiplier) + retailYd).toFixed(2);
@@ -1345,8 +1349,8 @@
                   this.dealerName = dealerName
                   this.productName = productName;
                   this.wholesaleYd = wholesaleYd;
-                  this.retailYd = retailYd;
-                  this.retailFt = retailFt;
+                  //this.retailYd = retailYd;
+                  //this.retailFt = retailFt;
                   this.itemId = itemId;
               }
 
@@ -1354,13 +1358,13 @@
                   this.dealerName = dealerName
                   this.productName = productName;
                   this.wholesaleYd = wholesaleYd;
-                  this.retailYd = retailYd;
-                  this.retailFt = retailFt;
+                  //this.retailYd = retailYd;
+                  //this.retailFt = retailFt;
                   this.itemId = itemId;
               }
 
 
-              $.Dealer = function (name, profit, markup, useprofit, carpetonly, cushion, usecushion, installation, useinstallation, freight, usefreight, other, useother, retailYd) {
+              $.Dealer = function (name, profit, markup, useprofit, carpetonly, cushion, usecushion, installation, useinstallation, freight, usefreight, other, useother, isRetailYd) {
 
                   this.name = name;
                   this.profit = profit;
@@ -1375,7 +1379,7 @@
                   this.usefreight = usefreight;
                   this.other = other;
                   this.useother = useother;
-                  this.retailYd = retailYd
+                  this.isRetailYd = isRetailYd
               }
 
 
@@ -1481,7 +1485,7 @@
 
 
 
-                      if (filteredDealer[index].retailYd == undefined || filteredDealer[index].retailYd.toLowerCase() == "true") {
+                      if (filteredDealer[index].isRetailYd == undefined || filteredDealer[index].isRetailYd.toLowerCase() == "true") {
                           setChecked("radioYdFt1", "true");
                           setChecked("radioYdFt2", "false");
                       } else {
@@ -1552,7 +1556,7 @@
               }
 
 
-              function addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd) {
+              function addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd) {
                   //get Dealers from storage
                   var Dealers = $.makeArray($.Dealer);
                   var data = localStorage['mohawkDealers']
@@ -1576,7 +1580,7 @@
                   }
                   //create new dealer
 
-                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd);
+                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
                   Dealers.push(myDealer);
 
 
@@ -1631,7 +1635,7 @@
 
               }
 
-              function deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd) {
+              function deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd) {
                   //get Dealers from storage
                   var Dealers = $.makeArray($.Dealer);
                   var data = localStorage['mohawkDealers']
@@ -1682,7 +1686,7 @@
               }
 
 
-              function DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd) {
+              function DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd) {
                   //get Dealers from storage
                   var Dealers = $.makeArray($.Dealer);
                   var data = localStorage['mohawkDealers']
@@ -1715,7 +1719,7 @@
                       var filteredDealer = $.makeArray($.Dealer);
                   }
                   //create new dealer
-                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd);
+                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
                   filteredDealer.push(myDealer);
 
 
@@ -1760,9 +1764,9 @@
                   var useFreight = $("#checkboxFreight").is(':checked').toString();
                   var other = $("#inputOther").val();
                   var useOther = $("#checkboxOther").is(':checked').toString();
-                  var retailYd = $("#retailYdFt1").is(':checked').toString();
+                  var isRetailYd = $("#retailYdFt1").is(':checked').toString();
 
-                  addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd);
+                  addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
                   setDealerData(dealerName);
                   hideButtons();
               }
@@ -1803,13 +1807,13 @@
                   var other = $("#inputOther").val();
                   var useOther = $("#checkboxOther").is(':checked').toString();
 
-                  var retailYd = $("#radioYdFt1").is(':checked').toString();
+                  var isRetailYd = $("#radioYdFt1").is(':checked').toString();
 
                   if (profitMargin == 'undefined') {
                       profitMargin = "0";
                   }
 
-                  DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd);
+                  DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
 
               }
 
@@ -1837,9 +1841,9 @@
                   var useFreight = $("#checkboxFreight").is(':checked').toString();;;
                   var other = $("#inputOther").val();
                   var useOther = $("#checkboxOther").is(':checked').toString();;
-                  var retailYd = $("#radioYdFt1").is(':checked').toString();
+                  var isRetailYd = $("#radioYdFt1").is(':checked').toString();
 
-                  deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, retailYd);
+                  deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
                   clearAll();
 
                   setDealerData(dealerName);
