@@ -684,14 +684,11 @@
                           if (dealerObject.useprofit == "false") {
 
                               multiplier = parseInt(dealerObject.profit) / 100 + 1;
-                              total = ((multiplier * (ydWithMarkup + ydWholesale2)) + retailYd).toFixed(2);
+                              total = ((multiplier * (ydWithMarkup + ydWholesale)) + retailYd).toFixed(2);
                           }
                           else {
 
-                              var testt = parseFloat((1 - (parseFloat(dealerObject.markup) / 100)).toFixed(2));
-                              var test = ((ydWithMarkup + ydWholesale) / testt);
-                              test = (test + retailYd).toFixed(2);
-
+                             
                               multiplier = parseFloat((1 - (parseFloat(dealerObject.markup) / 100)).toFixed(2));
                               total = (((ydWithMarkup + ydWholesale) / multiplier) + retailYd).toFixed(2);
                           }
