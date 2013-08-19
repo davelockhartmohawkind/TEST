@@ -24,7 +24,7 @@
 
         </style>
 	</head>
-	<body>
+	<body  class="no-touch">
         
 		<div data-role="page" data-theme="a">
            
@@ -32,10 +32,10 @@
                 <table> 
                     <tr>
                         <td><img  src="res/icon/ios/carpetcalc_icon_DRAFT.png"  width="48" height="48" /></td>
-                        <td><a id="topMenuDealer" href="#panelDealer" data-role="button" data-icon="home"  data-theme="a" data-inline="true">Dealer</a>
-                            <a id="topMenuWholesale"  href="#panelWholesale" data-role="button" data-icon="bars"  data-theme="a" data-inline="true">Wholesale</a>
-                            <a id="topMenuRetail"  href="#panelRetail" data-role="button" data-icon="bars"  data-theme="a" data-inline="true">Retail</a>
-                            <a id="topMenuSettings"  href="#panelSettings" data-role="button" data-icon="gear"  data-theme="a" data-inline="true">Settings</a>
+                        <td><a id="topMenuDealer" href="#panelDealer" data-role="button" data-icon="home"  data-theme="a" data-inline="true" data-mini="true" >Dealer</a>
+                            <a id="topMenuWholesale"  href="#panelWholesale" data-role="button" data-icon="bars"  data-theme="a" data-inline="true" data-mini="true" >Wholesale</a>
+                            <a id="topMenuRetail"  href="#panelRetail" data-role="button" data-icon="bars"  data-theme="a" data-inline="true" data-mini="true" >Retail</a>
+                            <a id="topMenuSettings"  href="#panelSettings" data-role="button" data-icon="gear"  data-theme="a" data-inline="true" data-mini="true" >Settings</a>
                         </td>
                    </tr>
               </table>
@@ -49,7 +49,7 @@
                       
                       <div  data-role="fieldcontain" >
                              <label for="selectDealerSelection">Dealer Option:</label>
-                             <a href="#"  id="inputBtnAdd" data-role="button"  data-icon="add" data-iconpos="right" data-inline="true" data-theme="b" data-mini="true" >New</a>
+                           <a href="#"  id="inputBtnAdd" data-role="button"  data-icon="add" data-iconpos="right" data-inline="true" data-theme="b" data-mini="true" >New</a>
                              <a href="#" id="inputBtnDelete"data-role="button" data-icon="delete" data-iconpos="right" data-inline="true" data-theme="b" hidden="hidden" data-mini="true"  >Delete</a>
                      
                           
@@ -61,12 +61,14 @@
                              </select>
                        </div> <!--fieldcontain-->
                    <div data-role="fieldcontain"  >
+                      
                         <label >Dealer Name:</label>
                         <fieldset data-role="controlgroup"  data-type="horizontal" >
 				        <legend>&nbsp;</legend>
                       
                            <input id="inputDealerSelection" type="text" placeholder="Dealer Name"    />
                         </fieldset>
+                       
                     </div>
 
                     <div data-role="fieldcontain">
@@ -99,9 +101,10 @@
 				            </fieldset>
                     </div> <!--field contain-->
 
-                   
+                      <div data-role="fieldcontain" >
+                      <label>Add To Profit:</label>
                         <table style="width:100%"  border="0">
-                           <tr><td style="width:22%" >Add Profit To:</td><td style="text-align:left; width:25%; " >
+                           <tr><td style="width:22%" ></td><td style="text-align:right; width:22%;  " >
                   
                            <input  type="checkbox" name="checkboxCushion" id="checkboxCushion"    data-inline="true" data-mini="true"   />
 	                       <label   style="width:150px" for="checkboxCushion">Cushion</label>
@@ -109,7 +112,7 @@
                            <input  id="inputCushion" type="number" value=""    data-inline="true"   display: inline-block;" data-mini="true" />
                           </td></tr>
                 
-                    <tr><td style="width:22%" ></td><td style="text-align:left; width:25%; " >
+                    <tr><td style="width:22%" ></td><td style="text-align:right;  width:22%; " >
                            <input type="checkbox" name="checkboxInstallation" id="checkboxInstallation" class="custom"   data-inline="true" data-mini="true"  />   
 	                       <label  style="width:150px" for="checkboxInstallation">Installation</label>
                            </td><td style=" text-align:left" >
@@ -117,21 +120,21 @@
                                 </td></tr>
 
                     
-                        <tr><td style="width:22%" ></td><td style="text-align:left; width:25%; " >
+                        <tr><td style="width:22%" ></td><td style="text-align:right;  width:22%; " >
                            <input type="checkbox" name="checkboxFreight" id="checkboxFreight" class="custom"   data-inline="true"  data-mini="true" />
 	                       <label  style="width:150px" for="checkboxFreight">Freight</label>
                                </td><td style=" text-align:left" >
                            <input id="inputFreight" type="number"  value=""   data-inline="true" data-mini="true"  />
                                     </td></tr>
                     
-                            <tr><td style="width:22%" ></td><td style="text-align:left; width:25%; " >
+                            <tr><td style="width:22%" ></td><td style="text-align:right; width:22%; " >
                            <input type="checkbox" name="checkboxOther" id="checkboxOther" class="custom"   data-inline="true"  data-mini="true" />
 	                       <label  style="width:150px" for="checkboxOther">Other</label>
                                    </td><td style=" text-align:left" >
                            <input id="inputOther" type="number" value=""    data-inline="true"  data-mini="true" />
                                         </td></tr>
                             </table>
-                   
+                   </div>
                     
                     <div data-role="fieldcontain" style="text-align:center" ><!--buttons -->
                          <div data-role="popup" id="popUpEnterDealerName" data-overlay-theme="b">
@@ -151,11 +154,11 @@
                   <thead>
                     <tr>
                       <th data-priority="1" style="width:30%">Product</th>
-                      <th data-priority="persist">Wholesale&nbsp;(yd)</th>
+                      <th data-priority="persist">Whsle&nbsp;(yd)</th>
                       <th data-priority="2">Retail&nbsp;(yd)</th>
-                          <th data-priority="2">Retail&nbsp;(ft)</th>
-                      <th data-priority="3"><abbr title="Rotten Tomato Rating">Retail&nbsp;(ft)</abbr></th>
-                      <th data-priority="4">Action</th>
+                      <th data-priority="3">Retail&nbsp;(ft)</th>
+                      <th data-priority="4">&nbsp;</th>
+                      <th data-priority="5">&nbsp;</th>
                     </tr>
                   </thead>
                   <tbody id="tbodyWholesale">
@@ -163,6 +166,8 @@
                   <!--rows go here -->        
                   </tbody>
                </table>
+    
+                 
             </div> <!--collapsible-->
 
               
@@ -171,7 +176,7 @@
                <table style="width:100%"><tr><td style="width:33%"> <h3><a href="#" id="headerRetailDealerName" data-rel="external">No Dealer Selected</a></h3> 
                 </td><td>
              
-                   <td> <fieldset data-role="controlgroup" data-type="horizontal"  >
+                    <fieldset data-role="controlgroup" data-type="horizontal"  >
                          <legend>&nbsp;</legend>
                          <input type="radio" name="radioYdFt" id="radioYdFt1" value="yd"   data-mini="true" />
                            <label for="radioYdFt1">yard</label>
@@ -187,10 +192,10 @@
                     <tr>
                       <th data-priority="1">Product</th>
                       <th id="labelRetailYdFt" data-priority="persist">Retail&nbsp;(yd)</th>
-                        <th  data-priority="persist">Retail&nbsp;(ft)</th>
-                      <th data-priority="2">Whsle&nbsp;(yd)</th>
-                      <th data-priority="3"><abbr title="Rotten Tomato Rating">Whsle&nbsp;(ft)</abbr></th>
-                      <th data-priority="4">Action</th>
+                        <th  data-priority="2">Retail&nbsp;(ft)</th>
+                      <th data-priority="4">Whsle&nbsp;(yd)</th>
+                      <th data-priority="4"><abbr title="Rotten Tomato Rating">Whsle&nbsp;(ft)</abbr></th>
+                      <th data-priority="5">Action</th>
                     </tr>
                   </thead>
                   <tbody id="tbodyRetail" >
@@ -250,6 +255,7 @@
                   $('#topMenuDealer').click(onPanelDealerClick);
                   $('#headerRetailDealerName').click(onPanelDealerClick);
                   $('#headerWholesaleDealerName').click(onPanelDealerClick);
+                  $('#topMenuSettings').click(ontopMenuSettingsClick);
 
                   $('#topMenuWholesale').click(onPanelWholesaleClick);
                   $('#topMenuRetail').click(onPanelRetailClick);
@@ -458,24 +464,24 @@
 
 
 
-                  //filteredDealer.sort(function (obj1, obj2) {
-                  //    if (obj1 == null) {
-                  //        return true;
-                  //    }
-                  //    if (obj2 == null) {
-                  //        return false;
-                  //    }
+                  filteredDealer.sort(function (obj1, obj2) {
+                      if (obj1 == null) {
+                          return true;
+                      }
+                      if (obj2 == null) {
+                          return false;
+                      }
 
-                  //    if (obj1.productName == '') {
-                  //        return true;
-                  //    }
+                      if (obj1.itemId == '') {
+                          return true;
+                      }
 
-                  //    if (obj2.productName == '') {
-                  //        return false;
-                  //    }
+                      if (obj2.itemId == '') {
+                          return false;
+                      }
 
-                  //    return obj1.productName > obj2.productName;
-                  //});
+                      return obj1.itemId > obj2.itemId;
+                  });
 
 
                   $("#tbodyRetail").empty();
@@ -560,7 +566,7 @@
                   });
                   //add a blank row
                   addBlankRetailRow(dealerObject.isRetailYd);
-
+                  $("#tableRetail").table("refresh");
               }
 
 
@@ -610,24 +616,24 @@
                   }
 
 
-                  //filteredDealer.sort(function (obj1, obj2) {
-                  //    if (obj1 == null) {
-                  //        return true;
-                  //    }
-                  //    if (obj2 == null) {
-                  //        return false;
-                  //    }
+                  filteredDealer.sort(function (obj1, obj2) {
+                      if (obj1 == null) {
+                          return true;
+                      }
+                      if (obj2 == null) {
+                          return false;
+                      }
 
-                  //    if (obj1.productName == '') {
-                  //        return true;
-                  //    }
+                      if (obj1.itemId == '') {
+                          return true;
+                      }
 
-                  //    if (obj2.productName == '') {
-                  //        return false;
-                  //    }
+                      if (obj2.itemId == '') {
+                          return false;
+                      }
 
-                  //    return obj1.productName > obj2.productName;
-                  //});
+                      return obj1.itemId > obj2.itemId;
+                  });
 
 
                   $("#tbodyWholesale").empty();
@@ -703,6 +709,7 @@
                   });
                   //add a blank row
                   addBlankRow();
+                  $("#tableWholesale").table("refresh");
 
               }
 
@@ -1052,6 +1059,10 @@
                   location.href = "#panelDealer";
               }
 
+              function ontopMenuSettingsClick() {
+                  alert("Version 1.0.4");
+              };
+
               function onPanelWholesaleClick() {
 
                   $('#panelDealer').trigger('collapse');
@@ -1146,11 +1157,11 @@
                   var mytable = '<tr>';
 
                   if (boolIncludeSave) {
-                      mytable = mytable + ' <td  style="width:30%" > <input   id="wholesaleProduct_' + itemId + '" type="text"  placeholder="Optional Product" value="' + wholesaleProduct + '"  /></td>';
+                      mytable = mytable + ' <th  > <input   id="wholesaleProduct_' + itemId + '" type="text"  placeholder="Optional Product" value="' + wholesaleProduct + '"  /></th>';
 
                   } else {
 
-                      mytable = mytable + ' <th>  <a href="." data-rel="external">' + wholesaleProduct + '</a></th>';
+                      mytable = mytable + ' <td>  <a href="." data-rel="external">' + wholesaleProduct + '</a></td>';
                   }
 
                   if (boolIncludeSave) {
@@ -1209,7 +1220,7 @@
                   var mytable = '<tr>';
 
                  
-                  mytable = mytable + ' <td  style="width:30%" > <input  id="retailProduct_' + itemId + '" type="text"  placeholder="Optional Product"  value="' + retailProduct + '"  /></td>';
+                  mytable = mytable + ' <td  > <input  id="retailProduct_' + itemId + '" type="text"  placeholder="Optional Product"  value="' + retailProduct + '"  /></td>';
 
                   
                 
