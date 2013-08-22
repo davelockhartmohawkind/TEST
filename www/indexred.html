@@ -5,8 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Price Calculator</title>
-		<!--<link rel="stylesheet" href="themes/MohawkPriceCalc2.min.css" />-->
-        <link rel="stylesheet" href="themes/MohawkRed.min.css" />
+		<link rel="stylesheet" href="themes/MohawkRed.min.css" />
 		<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>-->
@@ -14,7 +13,7 @@
         <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.css" />
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/jquery.mobile-1.3.2.min.js"></script>
-        <!-- <script src="js/format.20110630-1100.min.js"></script> --> <!--  formats numbers-->
+        <script src="js/format.20110630-1100.min.js"></script> <!--  formats numbers-->
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <style>
@@ -24,7 +23,7 @@
 
         </style>
 	</head>
-	<body  class="no-touch">
+	<body>
         
 		<div data-role="page" data-theme="a">
            
@@ -32,10 +31,10 @@
                 <table> 
                     <tr>
                         <td><img  src="res/icon/ios/carpetcalc_icon_DRAFT.png"  width="48" height="48" /></td>
-                        <td><a id="topMenuDealer" href="#panelDealer" data-role="button" data-icon="home"  data-theme="a" data-inline="true" data-mini="true" >Dealer</a>
-                            <a id="topMenuWholesale"  href="#panelWholesale" data-role="button" data-icon="bars"  data-theme="a" data-inline="true" data-mini="true" >Wholesale</a>
-                            <a id="topMenuRetail"  href="#panelRetail" data-role="button" data-icon="bars"  data-theme="a" data-inline="true" data-mini="true" >Retail</a>
-                            <a id="topMenuSettings"  href="#panelSettings" data-role="button" data-icon="gear"  data-theme="a" data-inline="true" data-mini="true" >Settings</a>
+                        <td><a id="topMenuDealer" href="#panelDealer" data-role="button" data-icon="home"  data-theme="a" data-inline="true">Dealer</a>
+                            <a id="topMenuWholesale"  href="#panelWholesale" data-role="button" data-icon="bars"  data-theme="a" data-inline="true">Wholesale</a>
+                            <a id="topMenuRetail"  href="#panelRetail" data-role="button" data-icon="bars"  data-theme="a" data-inline="true">Retail</a>
+                            <a id="topMenuSettings"  href="#panelSettings" data-role="button" data-icon="gear"  data-theme="a" data-inline="true">Settings</a>
                         </td>
                    </tr>
               </table>
@@ -45,39 +44,39 @@
          <h4>Dealer</h4>
 			    <div data-role="content" data-theme="a"> <!--content-->
 	             
-                <!--    <a href="MustSelectDealer.html" data-rel="dialog" data-transition="flip">Detailed Instructions</a>-->
+                    <a href="MustSelectDealer.html" data-rel="dialog" data-transition="flip">Detailed Instructions</a>
                       
                       <div  data-role="fieldcontain" >
                              <label for="selectDealerSelection">Dealer Option:</label>
-                           <a href="#"  id="inputBtnAdd" data-role="button"  data-icon="add" data-iconpos="right" data-inline="true" data-theme="b" data-mini="true" >New</a>
-                             <a href="#" id="inputBtnDelete"data-role="button" data-icon="delete" data-iconpos="right" data-inline="true" data-theme="b" hidden="hidden" data-mini="true"  >Delete</a>
+                             <a href="#"  id="inputBtnAdd" data-role="button"  data-icon="add" data-iconpos="right" data-inline="true" data-theme="b" >New</a>
+                             <a href="#" id="inputBtnDelete"data-role="button" data-icon="delete" data-iconpos="right" data-inline="true" data-theme="b" hidden="hidden"   >Delete</a>
                      
                           
                       </div> <!--fieldcontain-->
                        <div  data-role="fieldcontain" >
                             <label for="selectDealerSelection">Dealer Selection:</label>
-                              <select id="selectDealerSelection" name="selectDealerSelection"  data-inline="true" data-mini="true" >
+                              <select id="selectDealerSelection" name="selectDealerSelection"  data-inline="true" >
                                 <!-- <option value=" ">CHOOSE</option> -->
                              </select>
                        </div> <!--fieldcontain-->
                    <div data-role="fieldcontain"  >
-                      
                         <label >Dealer Name:</label>
                         <fieldset data-role="controlgroup"  data-type="horizontal" >
 				        <legend>&nbsp;</legend>
-                      
+                       <!-- <a href="#"  id="inputBtnAdd" data-role="button"  data-icon="add" data-iconpos="right" data-inline="true" data-theme="b" >Add</a>
+                        <a href="#" id="inputBtnDelete"data-role="button" data-inline="true">Delete</a>-->
+                     <!--   <input id="inputDealerSelection" type="text" placeholder="Dealer Name" class="ui-hidden-accessible"   />-->
                            <input id="inputDealerSelection" type="text" placeholder="Dealer Name"    />
                         </fieldset>
-                       
                     </div>
 
                     <div data-role="fieldcontain">
                         <label >Profit Type:</label>
                         <fieldset data-role="controlgroup"  data-type="horizontal" >
 				            <legend>&nbsp;</legend>
-				            <input type="radio" name="radioFormula" id="radioMarkup" value="Markup"   data-inline="true" data-mini="true" />
+				            <input type="radio" name="radioFormula" id="radioMarkup" value="Markup"   data-inline="true"  />
 				            <label for="radioMarkup">Markup</label>
-				            <input type="radio" name="radioFormula" id="radioProfitMargin" value="Margin"  data-inline="true" data-mini="true"  />
+				            <input type="radio" name="radioFormula" id="radioProfitMargin" value="Margin"  data-inline="true"  />
 				            <label for="radioProfitMargin">Margin</label>
                         </fieldset> 
                      </div> <!--field contain-->
@@ -86,7 +85,7 @@
                          <label >Percent %:</label>
                          <fieldset data-role="controlgroup"  data-type="horizontal" >
                            <legend>&nbsp;</legend>
-				           <input type="range" name="inputProfitMarginOrMarkup" id="inputProfitMarginOrMarkup" min="0" max="100" data-theme="a"  step="1" value="40" data-mini="true" />
+				           <input type="range" name="inputProfitMarginOrMarkup" id="inputProfitMarginOrMarkup" min="0" max="100" data-theme="a"  step=".1" value="40" />
                            </fieldset>
                     </div> <!--field contain-->
 
@@ -94,53 +93,52 @@
                         <label>Profit Method:</label>
 				            <fieldset data-role="controlgroup"  data-type="horizontal" >
 				            <legend>&nbsp;</legend>
-				            <input type="radio" name="radioCarpetOnlyOrInstalled" id="radioCarpetOnly" value="CarpentOnly" checked="checked" data-mini="true" />
+				            <input type="radio" name="radioCarpetOnlyOrInstalled" id="radioCarpetOnly" value="CarpentOnly" checked="checked" />
 				            <label for="radioCarpetOnly">Carpet Only</label>
-				            <input type="radio" name="radioCarpetOnlyOrInstalled" id="radioInstalled" value="Installed"  data-mini="true" />
+				            <input type="radio" name="radioCarpetOnlyOrInstalled" id="radioInstalled" value="Installed"  />
 				            <label for="radioInstalled">Installed</label>
 				            </fieldset>
                     </div> <!--field contain-->
 
-                      <div data-role="fieldcontain" >
-                      <label>Add To Profit:</label>
-                        <table style="width:100%"  border="0">
-                           <tr><td style="width:22%" ></td><td style="text-align:right; width:22%;  " >
-                  
-                           <input  type="checkbox" name="checkboxCushion" id="checkboxCushion"    data-inline="true" data-mini="true"   />
-	                       <label   style="width:150px" for="checkboxCushion">Cushion</label>
-                            </td><td style=" text-align:left" >
-                           <input  id="inputCushion" type="number" value=""    data-inline="true"   display: inline-block;" data-mini="true" />
-                          </td></tr>
-                
-                    <tr><td style="width:22%" ></td><td style="text-align:right;  width:22%; " >
-                           <input type="checkbox" name="checkboxInstallation" id="checkboxInstallation" class="custom"   data-inline="true" data-mini="true"  />   
+                    <div data-role="fieldcontain" >
+                        <label>Add Profit To:</label>
+                        <fieldset data-role="controlgroup"  data-type="horizontal">
+	                       <legend>&nbsp;</legend>
+                           <input type="checkbox" name="checkboxCushion" id="checkboxCushion" class="custom"   data-inline="true"   />
+	                       <label   style="width:150px" for="checkboxCushion">Cushion Cost</label>
+                           <input class="ui-input-text" id="inputCushion" type="number" value=""    data-inline="true"   display: inline-block;" />
+                        </fieldset>
+                        
+                        <fieldset data-role="controlgroup"  data-type="horizontal">
+	                       <legend>&nbsp;</legend>
+                           <input type="checkbox" name="checkboxInstallation" id="checkboxInstallation" class="custom"   data-inline="true"  />   
 	                       <label  style="width:150px" for="checkboxInstallation">Installation</label>
-                           </td><td style=" text-align:left" >
-                           <input id="inputInstallation" type="number" value=""    data-inline="true"    display: inline-block;" data-mini="true"  />
-                                </td></tr>
-
-                    
-                        <tr><td style="width:22%" ></td><td style="text-align:right;  width:22%; " >
-                           <input type="checkbox" name="checkboxFreight" id="checkboxFreight" class="custom"   data-inline="true"  data-mini="true" />
+                           <input id="inputInstallation" type="number" value=""    data-inline="true"    display: inline-block;"   />
+                        </fieldset>
+                        
+                        <fieldset data-role="controlgroup"  data-type="horizontal">
+	                       <legend>&nbsp;</legend>
+                           <input type="checkbox" name="checkboxFreight" id="checkboxFreight" class="custom"   data-inline="true"  />
 	                       <label  style="width:150px" for="checkboxFreight">Freight</label>
-                               </td><td style=" text-align:left" >
-                           <input id="inputFreight" type="number"  value=""   data-inline="true" data-mini="true"  />
-                                    </td></tr>
-                    
-                            <tr><td style="width:22%" ></td><td style="text-align:right; width:22%; " >
-                           <input type="checkbox" name="checkboxOther" id="checkboxOther" class="custom"   data-inline="true"  data-mini="true" />
+                           <input id="inputFreight" type="number"  value=""   data-inline="true"  />
+                        </fieldset>
+                        <fieldset data-role="controlgroup"  data-type="horizontal">
+	                       <legend>&nbsp;</legend>
+                           <input type="checkbox" name="checkboxOther" id="checkboxOther" class="custom"   data-inline="true"  />
 	                       <label  style="width:150px" for="checkboxOther">Other</label>
-                                   </td><td style=" text-align:left" >
-                           <input id="inputOther" type="number" value=""    data-inline="true"  data-mini="true" />
-                                        </td></tr>
-                            </table>
-                   </div>
+                           <input id="inputOther" type="number" value=""    data-inline="true"  />
+                        </fieldset>
+                    </div><!--field contain-->
                     
                     <div data-role="fieldcontain" style="text-align:center" ><!--buttons -->
                          <div data-role="popup" id="popUpEnterDealerName" data-overlay-theme="b">
                                 <p>Enter a Dealer Name Please<p>
                          </div>
-                    
+                     <!--   <a href="#" id="inputBtnSave"data-role="button" data-inline="true" >Save</a>-->
+                       <!-- <a href="#" id="inputBtnDelete"data-role="button" data-inline="true">Delete</a>-->
+                      <!--  <a href="#" id="inputBtnCancel"data-role="button" data-inline="true"  >Cancel</a>-->
+                        <!-- class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext="Processing"-->
+                        <!--<button class="hide-page-loading-msg" data-inline="true" data-icon="delete">Hide</button>-->
                     </div> <!--buttons-->
                  
                  </div> 
@@ -148,17 +146,17 @@
 
             <div  id="panelWholesale" data-role="collapsible" data-collapsed="true" > <!--collapsible-->
                 <h4 >Wholesale</h4>
-                <h3   ><a href="#" data-rel="external" id="headerWholesaleDealerName">No Dealer Selected</a></h3>
-          
-                <table data-role="table" id="tableWholesale" data-mode="reflow" class="ui-responsive table-stroke" style="width:100%">
+                <h3   ><a href="." data-rel="external" id="headerWholesaleDealerName">No Dealer Selected</a></h3>
+                <p id="headerWholesaleDealerDetails">No Details </p>
+
+                <table data-role="table" id="tableWholesale" data-mode="reflow" class="ui-responsive table-stroke">
                   <thead>
                     <tr>
-                      <th data-priority="1" style="width:30%">Product</th>
-                      <th data-priority="persist">Whsle&nbsp;(yd)</th>
+                      <th data-priority="1">Product</th>
+                      <th data-priority="persist">Wholesale</th>
                       <th data-priority="2">Retail&nbsp;(yd)</th>
-                      <th data-priority="3">Retail&nbsp;(ft)</th>
-                      <th data-priority="4">&nbsp;</th>
-                      <th data-priority="5">&nbsp;</th>
+                      <th data-priority="3"><abbr title="Rotten Tomato Rating">Retail&nbsp;(ft)</abbr></th>
+                      <th data-priority="4">Action</th>
                     </tr>
                   </thead>
                   <tbody id="tbodyWholesale">
@@ -166,36 +164,22 @@
                   <!--rows go here -->        
                   </tbody>
                </table>
-    
-                 
             </div> <!--collapsible-->
 
               
             <div   data-role="collapsible" id="panelRetail" data-collapsed="true" > <!--collapsible-->
                 <h4>Retail</h4>
-               <table style="width:100%"><tr><td style="width:33%"> <h3><a href="#" id="headerRetailDealerName" data-rel="external">No Dealer Selected</a></h3> 
-                </td><td>
-             
-                    <fieldset data-role="controlgroup" data-type="horizontal"  >
-                         <legend>&nbsp;</legend>
-                         <input type="radio" name="radioYdFt" id="radioYdFt1" value="yd"   data-mini="true" />
-                           <label for="radioYdFt1">yard</label>
-                        <input type="radio" name="radioYdFt" id="radioYdFt2" value="ft"  data-mini="true" />
-                          <label for="radioYdFt2">feet</label>
-                         </fieldset> </td>
-                 
-                  
-                    </td></tr></table>  
-           
-                <table data-role="table" id="tableRetail" data-mode="reflow" class="ui-responsive table-stroke"  style="width:100%">
+                <h3><a href="." id="headerRetailDealerName" data-rel="external">No Dealer Selected</a></h3>
+                <p id="headerRetailDealerDetails" >No Details</p>
+
+                <table data-role="table" id="tableRetail" data-mode="reflow" class="ui-responsive table-stroke">
                   <thead>
                     <tr>
                       <th data-priority="1">Product</th>
-                      <th id="labelRetailYdFt" data-priority="persist">Retail&nbsp;(yd)</th>
-                        <th  data-priority="2">Retail&nbsp;(ft)</th>
-                      <th data-priority="4">Whsle&nbsp;(yd)</th>
-                      <th data-priority="4"><abbr title="Rotten Tomato Rating">Whsle&nbsp;(ft)</abbr></th>
-                      <th data-priority="5">Action</th>
+                      <th data-priority="persist">Retail</th>
+                      <th data-priority="2">Wholesale&nbsp;(yd)</th>
+                      <th data-priority="3"><abbr title="Rotten Tomato Rating">Wholesale&nbsp;(ft)</abbr></th>
+                      <th data-priority="4">Action</th>
                     </tr>
                   </thead>
                   <tbody id="tbodyRetail" >
@@ -253,10 +237,6 @@
                   $('#inputBtnDelete').click(onDeleteDealerClick);
 
                   $('#topMenuDealer').click(onPanelDealerClick);
-                  $('#headerRetailDealerName').click(onPanelDealerClick);
-                  $('#headerWholesaleDealerName').click(onPanelDealerClick);
-                  $('#topMenuSettings').click(ontopMenuSettingsClick);
-
                   $('#topMenuWholesale').click(onPanelWholesaleClick);
                   $('#topMenuRetail').click(onPanelRetailClick);
 
@@ -265,19 +245,19 @@
                   $('#inputProfitMarginOrMarkup').on("slidestop", onDealerInputBlur);
 
 
-                  // $("#inputCushion").keyup(onInputKeyup);
+                  $("#inputCushion").keyup(onInputKeyup);
                   $("#inputCushion").blur(onDealerInputBlur);
                   $("#checkboxCushion").click(onDealerInputBlur);
 
-                  // $("#inputInstallation").keyup(onInputKeyup);
+                  $("#inputInstallation").keyup(onInputKeyup);
                   $("#inputInstallation").blur(onDealerInputBlur);
                   $("#checkboxInstallation").click(onDealerInputBlur);
 
-                  // $("#inputFreight").keyup(onInputKeyup);
+                  $("#inputFreight").keyup(onInputKeyup);
                   $("#inputFreight").blur(onDealerInputBlur);
                   $("#checkboxFreight").click(onDealerInputBlur);
 
-                  // $("#inputOther").keyup(onInputKeyup);
+                  $("#inputOther").keyup(onInputKeyup);
                   $("#inputOther").blur(onDealerInputBlur);
                   $("#checkboxOther").click(onDealerInputBlur);
 
@@ -285,14 +265,6 @@
                   $("#radioInstalled").click(onDealerInputBlur);
                   $("#radioProfitMargin").click(onDealerInputBlur);
                   $("#radioMarkup").click(onDealerInputBlur);
-
-                  $("#radioYdFt1").click(onradioYdFtClick);
-                  $("#radioYdFt2").click(onradioYdFtClick);
-
-                  function onradioYdFtClick() {
-
-                      onDealerInputBlur();
-                  }
 
                   //$(".carpetCost").keyup(onInputKeyup);
 
@@ -366,7 +338,6 @@
 
               function formatInputToNumber(testnumber) {
 
-                  return testnumber;
                   var formattednumber = "";
                   var testlength = 0;
                   if (testnumber == null) {
@@ -382,12 +353,19 @@
                   }
 
 
-                  testnumber = replaceAll(".", "", testnumber);
+                 testnumber = replaceAll(".", "", testnumber);
                   testnumber = replaceAll(",", "", testnumber);
 
                   testlength = testnumber.length;
 
-                  
+                  //if (testnumber.length > 1) {
+                  //    if (testnumber.substr(0, 1) == "0") {
+                  //        testnumber = testnumber.substr(1, testnumber.length - 1);
+
+                  //    }
+                 // }
+
+
                   testlength = testnumber.length;
 
                   if (testlength > 2) {
@@ -431,7 +409,6 @@
 
                   var dealerObject = getDealerObject(dealerName);
                   if (dealerObject == null) {
-                      $("#tbodyRetail").empty();
                       return;
                   }
 
@@ -440,7 +417,7 @@
 
                   if (data == undefined || data == null || data == "") {
                       $("#tbodyRetail").empty();
-                      addBlankRetailRow(dealerObject.isRetailYd);
+                      addBlankRetailRow();
                       return;
                   }
 
@@ -457,7 +434,7 @@
                   //update UI with data
                   if (filteredDealer.length < 1) {
                       $("#tbodyRetail").empty();
-                      addBlankRetailRow(dealerObject.isRetailYd);
+                      addBlankRetailRow();
                       return;
                   }
 
@@ -472,15 +449,15 @@
                           return false;
                       }
 
-                      if (obj1.itemId == '') {
+                      if (obj1.productName == '') {
                           return true;
                       }
 
-                      if (obj2.itemId == '') {
+                      if (obj2.productName == '') {
                           return false;
                       }
 
-                      return obj1.itemId > obj2.itemId;
+                      return obj1.productName > obj2.productName;
                   });
 
 
@@ -535,7 +512,7 @@
                           var multiplier = 0;
                           var ydWithMarkup = retailYdWithMarkup;
                           var ydWholesale = wholesaleYd;
-
+                          
                           if (dealerObject.useprofit == "false") {
 
                               multiplier = parseInt(dealerObject.profit) / 100 + 1;
@@ -547,26 +524,21 @@
                               total = (((ydWholesale - retailYd) * multiplier) - ydWithMarkup).toFixed(2);
                           }
 
+
+                         // var total = (((ydWholesale - ydWithMarkup)).toFixed(2) / multiplier).toFixed(2);
                           retailYd = total;
 
-                          retailFt = (retailYd / 9).toFixed(2);
-                       
-                          if (retailPriceCalc.wholesaleYd > 0) {
-                              var yardby9 = (retailPriceCalc.wholesaleYd / 9).toFixed(2);
-                          }
-                          else {
-                              yardby9 = 0;
-                          }
 
-                          
-                          addRetailRow(retailPriceCalc.productName, retailPriceCalc.wholesaleYd, yardby9, retailYd, retailFt, false, true, retailPriceCalc.itemId, dealerObject.isRetailYd);
+
+                          retailFt = (retailYd / 9).toFixed(2);
+                          addRetailRow(retailPriceCalc.productName, retailPriceCalc.wholesaleYd, retailYd, retailFt, false, true, retailPriceCalc.itemId);
                       }
 
 
                   });
                   //add a blank row
-                  addBlankRetailRow(dealerObject.isRetailYd);
-                  $("#tableRetail").table("refresh");
+                  addBlankRetailRow();
+
               }
 
 
@@ -584,13 +556,40 @@
 
                   var dealerObject = getDealerObject(dealerName);
                   if (dealerObject == null) {
-                      $("#tbodyWholesale").empty();
                       return;
                   }
 
                   $("#headerWholesaleDealerName").text(dealerObject.name);
 
-                 
+                  //if (dealerObject.carpetonly == 'true') {
+                  //    headerDetails = headerDetails + 'Carpet Only,';
+                  //}
+
+                  //if (dealerObject.useprofit == 'true') {
+                  //    headerDetails = headerDetails + 'Margin ' + dealerObject.profit + '% ';
+                  //}
+                  //else {
+                  //    headerDetails == headerDetails + 'Markup ' + dealerObject.markup + '% ';
+                  //}
+
+                  //if (dealerObject.carpetonly == 'false') {
+
+                  //    if (dealerObject.usecushion == 'true') {
+                  //        headerDetails == headerDetails + ',Cushion ';
+                  //    }
+                  //    if (dealerObject.useinstallation == 'true') {
+                  //        headerDetails == headerDetails + ',Cushion ';
+                  //    }
+                  //    if (dealerObject.usefreight == 'true') {
+                  //        headerDetails == headerDetails + ',Freight ';
+                  //    }
+                  //    if (dealerObject.useother == 'true') {
+                  //        headerDetails == headerDetails + ',Other ';
+                  //    }
+                  //}
+
+
+                  //$("#headerWholesaleDealerDetails").text(headerDetails);
 
                   if (data == undefined || data == null || data == "") {
                       $("#tbodyWholesale").empty();
@@ -616,6 +615,8 @@
                   }
 
 
+
+
                   filteredDealer.sort(function (obj1, obj2) {
                       if (obj1 == null) {
                           return true;
@@ -624,15 +625,15 @@
                           return false;
                       }
 
-                      if (obj1.itemId == '') {
+                      if (obj1.productName == '') {
                           return true;
                       }
 
-                      if (obj2.itemId == '') {
+                      if (obj2.productName == '') {
                           return false;
                       }
 
-                      return obj1.itemId > obj2.itemId;
+                      return obj1.productName > obj2.productName;
                   });
 
 
@@ -646,7 +647,7 @@
 
                       if (wholesalePriceCalc != null) {
                           //calculate total here
-                          wholesaleYd = parseFloat(wholesalePriceCalc.wholesaleYd).toFixed(2);
+                          wholesaleYd = parseFloat(wholesalePriceCalc.wholesaleYd);
                           if (dealerObject.carpetonly == 'false') {
                               if (dealerObject.usecushion == "true") {
                                   //do it
@@ -686,7 +687,7 @@
                           var total = 0;
                           var multiplier = 0;
                           var ydWithMarkup = retailYdWithMarkup;
-                          var ydWholesale = parseFloat(wholesaleYd);
+                          var ydWholesale = wholesaleYd;
                           if (dealerObject.useprofit == "false") {
 
                               multiplier = parseInt(dealerObject.profit) / 100 + 1;
@@ -694,22 +695,20 @@
                           }
                           else {
 
-                             
                               multiplier = parseFloat((1 - (parseFloat(dealerObject.markup) / 100)).toFixed(2));
-                              total = (((ydWithMarkup + ydWholesale) / multiplier) + retailYd).toFixed(2);
+                              total = (((ydWithMarkup + ydWholesale)  / multiplier) + retailYd).toFixed(2);
                           }
 
-                         
+                          //var total = (multiplier * (ydWithMarkup + ydWholesale)).toFixed(2);
                           retailYd = total;
 
                           retailFt = (retailYd / 9).toFixed(2);
-                          addRow(wholesalePriceCalc.productName, ydWholesale, retailYd, retailFt, false, true, wholesalePriceCalc.itemId);
+                          addRow(wholesalePriceCalc.productName, wholesalePriceCalc.wholesaleYd, retailYd, retailFt, false, true, wholesalePriceCalc.itemId);
                       }
 
                   });
                   //add a blank row
                   addBlankRow();
-                  $("#tableWholesale").table("refresh");
 
               }
 
@@ -720,10 +719,10 @@
 
               }
 
-              function saveRetail(itemId, dealerName, productName, retailYd, retailFt) {
+              function saveRetail(itemId, dealerName, productName, retailYd) {
                   deleteRetail(dealerName, itemId);
 
-                  addRetail(itemId, dealerName, productName, retailYd, retailFt);
+                  addRetail(itemId, dealerName, productName, retailYd);
 
               }
 
@@ -743,7 +742,13 @@
                           return 0;
                       });
 
-                     
+                      //update UI with data
+                      //if (filteredDealer.length < 1) {
+                      //    //alert(item + " already exist");
+                      //    return;
+                      //}
+
+
                       if (filteredDealer.length > 0) {
                           filteredDealer.sort(function (obj1, obj2) {
                               if (obj1 == null) {
@@ -839,7 +844,12 @@
                           return 0;
                       });
 
-                      
+                      //update UI with data
+                      //if (filteredDealer.length < 1) {
+                      //    //alert(item + " already exist");
+                      //    return;
+                      //}
+
 
                       if (filteredDealer.length > 0) {
                           filteredDealer.sort(function (obj1, obj2) {
@@ -987,7 +997,7 @@
               }
 
 
-              function addRetail(itemId, dealerName, productName, retailYd, retailFt) {
+              function addRetail(itemId, dealerName, productName, retailYd) {
                   //get items from storage
                   var retailYdWithMarkup = 0;
                   var retailFt = 0;
@@ -1025,7 +1035,7 @@
                   }
 
                   //create new item
-                  var myPriceCalc = new $.RetailPriceCalc(dealerName, productName, retailYd, retailYd, retailFt, itemId);
+                  var myPriceCalc = new $.RetailPriceCalc(dealerName, productName, retailYd, '0', '0', itemId);
                   RetailPriceCalcs.push(myPriceCalc);
 
                   RetailPriceCalcs.sort(function (obj1, obj2) {
@@ -1059,10 +1069,6 @@
                   location.href = "#panelDealer";
               }
 
-              function ontopMenuSettingsClick() {
-                  alert("Version 1.0.4");
-              };
-
               function onPanelWholesaleClick() {
 
                   $('#panelDealer').trigger('collapse');
@@ -1093,7 +1099,11 @@
                       alert("Please enter wholesale amount");
                       return;
                   }
-                 
+                  if (productName == "") {
+                      productName = itemId;
+
+                  }
+
 
                   saveWholesale(itemId, dealerName, productName, wholesaleYd);
                   setDealerData(dealerName);
@@ -1105,45 +1115,31 @@
                   var dealerName = $("#selectDealerSelection").val();
                   var productName = $("#retailProduct_" + myArray[1]).val();
                   var retailYd = $("#retailCost_" + myArray[1]).val();
-                  var retailFt = $("#retailCostFt_" + myArray[1]).val();
                   var itemId = myArray[1];
                   if (dealerName == "") {
                       alert("Please select a dealer");
                       return;
                   }
-                  
-                  var test = $('[name=radioYdFt]:checked').val();
-
-                  if (test == "ft") {
-                      if (retailFt == "") {
-                          alert("Please enter retail amount");
-                          return;
-                      }
-
-                     
-                      retailYd = (retailFt * 9).toFixed(2);
+                  if (retailYd == "") {
+                      alert("Please enter retail amount");
+                      return;
                   }
-                  else {
-                      if (retailYd == "") {
-                          alert("Please enter retail amount");
-                          return;
-                      }
+                  if (productName == "") {
+                      productName = itemId;
 
-
-                      retailFt = (retailYd / 9).toFixed(2);
                   }
 
-                  saveRetail(itemId, dealerName, productName, retailYd, retailFt);
+                  saveRetail(itemId, dealerName, productName, retailYd);
                   setDealerData(dealerName);
 
               }
 
               function addBlankRow() {
-                  addRow('', '', '0', '0', true, false, '', true);
+                  addRow('', '', '', '', true, false, '');
               }
 
-              function addBlankRetailRow(RetailYd) {
-                  addRetailRow('', '', '', '0', '0', true, false, '', RetailYd);
+              function addBlankRetailRow() {
+                  addRetailRow('', '', '', '', true, false, '');
               }
 
               function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolIncludeSave, boolIncludeDelete, itemId) {
@@ -1152,16 +1148,15 @@
                       itemId = (new Date()).getTime();
 
                   }
-                  boolIncludeSave = true;
 
                   var mytable = '<tr>';
 
                   if (boolIncludeSave) {
-                      mytable = mytable + ' <th  > <input   id="wholesaleProduct_' + itemId + '" type="text"  placeholder="Optional Product" value="' + wholesaleProduct + '"  /></th>';
+                      mytable = mytable + ' <th> <input  id="wholesaleProduct_' + itemId + '" type="text"  placeholder="Optional Product"  /></th>';
 
                   } else {
 
-                      mytable = mytable + ' <td>  <a href="." data-rel="external">' + wholesaleProduct + '</a></td>';
+                      mytable = mytable + ' <th>  <a href="." data-rel="external">' + wholesaleProduct + '</a></th>';
                   }
 
                   if (boolIncludeSave) {
@@ -1174,28 +1169,27 @@
                   mytable = mytable + ' <td>$' + retailFt + '</td>';
 
 
+                  if (boolIncludeDelete) {
+                      mytable = mytable + '<td><a data-rel="external" id="btnwholesaleCostDelete_' + itemId + '" href="#" data-role="button" data-icon="delete" data-iconpos="right" data-inline="true"></a></td>';
+                  }
 
                   if (boolIncludeSave) {
-                      mytable = mytable + '<td><button id="btnwholesaleCostSave_' + itemId + '"  data-role="button" data-icon="add" data-iconpos="right" data-inline="true" data-theme="b"  data-mini="true">Save</button></td>';
+                      mytable = mytable + '<td><button id="btnwholesaleCostSave_' + itemId + '"  data-role="button" data-icon="add" data-iconpos="right" data-inline="true" data-theme="b" >Add</button></td>';
                   }
-                  if (boolIncludeDelete) {
-                      mytable = mytable + '<td><a data-rel="external" id="btnwholesaleCostDelete_' + itemId + '" href="#" data-role="button" data-icon="delete" data-iconpos="right" data-inline="true" data-mini="true">Delete</a></td>';
-                  }
-
                   mytable = mytable + '               </tr> ';
 
 
                   $("#tbodyWholesale").append(mytable);
 
 
-
+                
                   $("#btnwholesaleCostDelete_" + itemId).click(onWholesaleCostDeleteButtonClick);
-
+              
 
                   if (boolIncludeSave) {
                       //$("#tableWholesale").table("refresh");
                       $("#btnwholesaleCostSave_" + itemId).click(onWholesaleCostSaveButtonClick);
-                      // $("#wholesaleCost_" + itemId).keyup(onInputKeyup);
+                      $("#wholesaleCost_" + itemId).keyup(onInputKeyup);
                       $("#tableWholesale").trigger("create");
 
                   }
@@ -1203,59 +1197,40 @@
               }
 
 
-              function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd, wholesaleFt, boolIncludeSave, boolIncludeDelete, itemId, retailYd) {
+              function addRetailRow(retailProduct, retailAmount, wholesaleYd, wholesaleFt, boolIncludeSave, boolIncludeDelete, itemId) {
 
                   if (itemId == null || itemId == "") {
                       itemId = (new Date()).getTime();
 
                   }
 
-                  if(retailYd == undefined  || retailYd == null || retailYd == "")
-                  {
-                      retailYd = "true";
-                  }
-
-                  boolIncludeSave = true;
-
                   var mytable = '<tr>';
 
-                 
-                  mytable = mytable + ' <td  > <input  id="retailProduct_' + itemId + '" type="text"  placeholder="Optional Product"  value="' + retailProduct + '"  /></td>';
+                  if (boolIncludeSave) {
+                      mytable = mytable + ' <th> <input  id="retailProduct_' + itemId + '" type="text"  placeholder="Optional Product"  /></th>';
 
-                  
-                
-                  mytable = mytable + ' <td><input  class="carpetCost" id="retailCost_' + itemId + '"  type="number"  placeholder="Enter Retail $0.00"  value="' + retailAmountYd + '" ';
+                  } else {
 
-                  if (toBool(retailYd)) {
-                      mytable = mytable + ' /></td>';
+                      mytable = mytable + ' <th>  <a href="." data-rel="external">' + retailProduct + '</a></th>';
+                  }
+
+                  if (boolIncludeSave) {
+                      mytable = mytable + ' <td><input  class="carpetCost" id="retailCost_' + itemId + '"  type="number"  placeholder="Enter Retail $0.00"  value="' + retailAmount + '"  /></td>';
                   }
                   else {
-                      mytable = mytable + ' disabled  /></td>';
+                      mytable = mytable + ' <td> ' + retailAmount + '</td>';
                   }
-               
-                  mytable = mytable + ' <td><input  class="carpetCost" id="retailCostFt_' + itemId + '"  type="number"  placeholder="Enter Retail $0.00"  value="' + retailAmountFt + '" ';
-
-                  if (toBool(retailYd)) {
-                      mytable = mytable + ' disabled /></td>';
-                  }
-                  else {
-                      mytable = mytable + ' /></td>';
-                  }
-
                   mytable = mytable + ' <td>$' + wholesaleYd + '</td>';
                   mytable = mytable + ' <td>$' + wholesaleFt + '</td>';
 
 
-
+                  if (boolIncludeDelete) {
+                      mytable = mytable + '<td><a data-rel="external" id="btnretailCostDelete_' + itemId + '" href="#" data-role="button" data-icon="delete" data-iconpos="right" data-inline="true"></a></td>';
+                  }
 
                   if (boolIncludeSave) {
-                      mytable = mytable + '<td><button id="btnretailCostSave_' + itemId + '"  data-role="button" data-icon="add" data-iconpos="right" data-inline="true" data-theme="b"  data-mini="true" >Save</button></td>';
+                      mytable = mytable + '<td><button id="btnretailCostSave_' + itemId + '"  data-role="button" data-icon="add" data-iconpos="right" data-inline="true" data-theme="b" >Add</button></td>';
                   }
-
-                  if (boolIncludeDelete) {
-                      mytable = mytable + '<td><a data-rel="external" id="btnretailCostDelete_' + itemId + '" href="#" data-role="button" data-icon="delete" data-iconpos="right" data-inline="true"  data-mini="true"  >Delete</a></td>';
-                  }
-
                   mytable = mytable + '               </tr> ';
 
 
@@ -1263,13 +1238,13 @@
 
 
                   $("#btnretailCostDelete_" + itemId).click(onRetailCostDeleteButtonClick);
-
+                 
 
                   if (boolIncludeSave) {
                       //$("#tableWholesale").table("refresh");
 
                       $("#btnretailCostSave_" + itemId).click(onRetailCostSaveButtonClick);
-                      //  $("#retailCost_" + itemId).keyup(onInputKeyup);
+                      $("#retailCost_" + itemId).keyup(onInputKeyup);
                       $("#tableRetail").trigger("create");
 
                   }
@@ -1319,7 +1294,7 @@
                   var myArray = this.id.split('_');
                   var dealerName = $("#selectDealerSelection").val();
                   var productName = $("#retailProduct_" + myArray[1]).val();
-                  var itemId = myArray[1];
+                  var itemId =  myArray[1];
 
                   deleteRetail(dealerName, itemId);
                   setDealerData(dealerName);
@@ -1328,7 +1303,9 @@
 
               function onSelectDealer() {
                   $("#inputDealerSelection").val($("#selectDealerSelection :selected").text());
-                  
+                  //$("#inputDealerSelection").textinput()
+                  //$("#inputDealerSelection").attr('hidden', 'hidden');
+                  //$("#inputDealerSelection").textinput({ disabled: true });
                   setDealerData($("#selectDealerSelection :selected").text());
 
               }
@@ -1348,7 +1325,8 @@
 
                   $("#inputDealerSelection").focus();
 
-               
+                  //  $('#inputBtnAdd').addClass("ui-hidden-accessible"); //hide button
+                  //  $('#inputDealerSelection').removeClass("ui-hidden-accessible"); //unhide input text
               }
 
 
@@ -1357,8 +1335,8 @@
                   this.dealerName = dealerName
                   this.productName = productName;
                   this.wholesaleYd = wholesaleYd;
-                  //this.retailYd = retailYd;
-                  //this.retailFt = retailFt;
+                  this.retailYd = retailYd;
+                  this.retailFt = retailFt;
                   this.itemId = itemId;
               }
 
@@ -1366,13 +1344,13 @@
                   this.dealerName = dealerName
                   this.productName = productName;
                   this.wholesaleYd = wholesaleYd;
-                  //this.retailYd = retailYd;
-                  //this.retailFt = retailFt;
+                  this.retailYd = retailYd;
+                  this.retailFt = retailFt;
                   this.itemId = itemId;
               }
 
 
-              $.Dealer = function (name, profit, markup, useprofit, carpetonly, cushion, usecushion, installation, useinstallation, freight, usefreight, other, useother, isRetailYd) {
+              $.Dealer = function (name, profit, markup, useprofit, carpetonly, cushion, usecushion, installation, useinstallation, freight, usefreight, other, useother) {
 
                   this.name = name;
                   this.profit = profit;
@@ -1387,7 +1365,6 @@
                   this.usefreight = usefreight;
                   this.other = other;
                   this.useother = useother;
-                  this.isRetailYd = isRetailYd
               }
 
 
@@ -1398,7 +1375,7 @@
                   var data = localStorage['mohawkDealers']
 
                   $('#selectDealerSelection').removeClass("ui-hidden-accessible");
-               
+                  // $('#inputDealerSelection').addClass("ui-hidden-accessible");
                   $('#inputBtnAdd').removeClass("ui-hidden-accessible");
 
                   if (data == undefined || data == null || data == "") {
@@ -1430,10 +1407,10 @@
                   //build select 
                   $("#selectDealerSelection").empty();
                   if (dealerName == '') {
-                      $("#selectDealerSelection").append('<option value="" selected >CHOOSE DEALER</option>');
+                      $("#selectDealerSelection").append('<option value="" selected >CHOOSE</option>');
                   }
                   else {
-                      $("#selectDealerSelection").append('<option value=""  >CHOOSE DEALER</option>');
+                      $("#selectDealerSelection").append('<option value=""  >CHOOSE</option>');
                   }
                   $.each(SortedDealers, function (index, dealer) {
                       var selected = '';
@@ -1492,29 +1469,19 @@
                       }
 
 
-
-                      if (filteredDealer[index].isRetailYd == undefined || filteredDealer[index].isRetailYd.toLowerCase() == "true") {
-                          setChecked("radioYdFt1", "true");
-                          setChecked("radioYdFt2", "false");
-                      } else {
-                          setChecked("radioYdFt1", "false");
-                          setChecked("radioYdFt2", "true");
-                      }
-
-
-                      $("#inputCushion").val(parseFloat(filteredDealer[index].cushion).toFixed(2));
+                      $("#inputCushion").val(filteredDealer[index].cushion);
                       setChecked("checkboxCushion", filteredDealer[index].usecushion);
 
 
-                      $("#inputInstallation").val(parseFloat(filteredDealer[index].installation).toFixed(2));
+                      $("#inputInstallation").val(filteredDealer[index].installation);
                       setChecked("checkboxInstallation", filteredDealer[index].useinstallation);
 
 
-                      $("#inputFreight").val(parseFloat(filteredDealer[index].freight).toFixed(2));
+                      $("#inputFreight").val(filteredDealer[index].freight);
                       setChecked("checkboxFreight", filteredDealer[index].usefreight);
 
 
-                      $("#inputOther").val(parseFloat(filteredDealer[index].other).toFixed(2));
+                      $("#inputOther").val(filteredDealer[index].other);
                       setChecked("checkboxOther", filteredDealer[index].useother);
 
                   }
@@ -1564,7 +1531,7 @@
               }
 
 
-              function addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd) {
+              function addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther) {
                   //get Dealers from storage
                   var Dealers = $.makeArray($.Dealer);
                   var data = localStorage['mohawkDealers']
@@ -1588,7 +1555,7 @@
                   }
                   //create new dealer
 
-                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
+                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther);
                   Dealers.push(myDealer);
 
 
@@ -1643,7 +1610,7 @@
 
               }
 
-              function deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd) {
+              function deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther) {
                   //get Dealers from storage
                   var Dealers = $.makeArray($.Dealer);
                   var data = localStorage['mohawkDealers']
@@ -1662,7 +1629,9 @@
                       return 0;
                   });
 
-                 
+                  //if (filteredDealer.length < 1) {
+                  //    return;
+                  //}
 
                   if (filteredDealer.length > 0) {
                       filteredDealer.sort(function (obj1, obj2) {
@@ -1694,7 +1663,7 @@
               }
 
 
-              function DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd) {
+              function DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther) {
                   //get Dealers from storage
                   var Dealers = $.makeArray($.Dealer);
                   var data = localStorage['mohawkDealers']
@@ -1727,7 +1696,7 @@
                       var filteredDealer = $.makeArray($.Dealer);
                   }
                   //create new dealer
-                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
+                  var myDealer = new $.Dealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther);
                   filteredDealer.push(myDealer);
 
 
@@ -1769,12 +1738,11 @@
                   var installation = $("#inputInstallation").val();;
                   var useInstallation = $("#checkboxInstallation").is(':checked').toString();
                   var freight = $("#inputFreight").val();
-                  var useFreight = $("#checkboxFreight").is(':checked').toString();
+                  var useFreight = $("#checkboxFreight").is(':checked').toString();;;
                   var other = $("#inputOther").val();
-                  var useOther = $("#checkboxOther").is(':checked').toString();
-                  var isRetailYd = $("#retailYdFt1").is(':checked').toString();
+                  var useOther = $("#checkboxOther").is(':checked').toString();;
 
-                  addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
+                  addDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther);
                   setDealerData(dealerName);
                   hideButtons();
               }
@@ -1789,6 +1757,7 @@
 
                   saveDealer();
 
+                  // saveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther);
                   setDealerData(dealerName);
                   hideButtons();
               }
@@ -1815,13 +1784,11 @@
                   var other = $("#inputOther").val();
                   var useOther = $("#checkboxOther").is(':checked').toString();
 
-                  var isRetailYd = $("#radioYdFt1").is(':checked').toString();
-
                   if (profitMargin == 'undefined') {
                       profitMargin = "0";
                   }
 
-                  DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
+                  DAsaveDealer(selectedDealerName, dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther);
 
               }
 
@@ -1849,9 +1816,8 @@
                   var useFreight = $("#checkboxFreight").is(':checked').toString();;;
                   var other = $("#inputOther").val();
                   var useOther = $("#checkboxOther").is(':checked').toString();;
-                  var isRetailYd = $("#radioYdFt1").is(':checked').toString();
 
-                  deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
+                  deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther);
                   clearAll();
 
                   setDealerData(dealerName);
