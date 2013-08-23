@@ -493,7 +493,7 @@ var deleteProfile = function (target_profile, dealerName) {
 
         var x = confirm('Are you sure you would like to delete this profile?');
 
-        alert(x);
+        //alert(x);
         if (x == true) {
             $('.list_item').eq(index).remove();
             global_inputDealerSelection = dealerName;
