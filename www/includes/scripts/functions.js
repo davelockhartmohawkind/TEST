@@ -140,7 +140,7 @@ $(document).ready(function () {
     $("#products_remove").click(clearAllProducts);
     $("#product_add").click(addProduct)
 
-    setDealerData('test');
+    setDealerList('');
 
     /* Tabs Activiation
     ================================================== */
@@ -398,7 +398,7 @@ function onDealerSelect(targetProfile, dealerName) {
     global_inputDealerSelection = dealerName;
     global_selectDealerSelection = dealerName;
 
-    setDealerData(dealerName);
+    setDealerList(dealerName);
 
     //setTimeout(function () {
     //    $('#dropshade_trigger').trigger('click');
@@ -513,7 +513,7 @@ var resetCosts = function () {
 function addProduct() {
     // Add Product to calculation results
     //alert('Add Product Function  ');
-    if (global_doWholeSale == "true") {
+    if (   global_doWholeSale == "true") {
 
         addBlankRow();
         return;
@@ -1573,7 +1573,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                 </div>';
     mytable = mytable + '                                 <div class="datacell3">';
     mytable = mytable + '                                 	<div class="cellpad">';
-    mytable = mytable + '                                 		<div  id="btnwholesaleCostSave_' + itemId + '" class="directional_right"></div>';
+    mytable = mytable + '                                 		<a href="#"  id="btnwholesaleCostSave_' + itemId + '" class="directional_right"></a>';
     mytable = mytable + '                                  	</div>';
     mytable = mytable + '                                 </div>';
     mytable = mytable + '                                 <div class="datacell4">';
@@ -1796,7 +1796,7 @@ function onAddDealerBtnClick() {
     // $('#selectDealerSelection').val(newDealerName);
     // $("#selectDealerSelection").selectmenu("refresh");
     saveDealer();
-    setDealerData(newDealerName);
+    setDealerList(newDealerName);
 
     $("#inputDealerSelection").focus();
 
@@ -1842,8 +1842,7 @@ $.Dealer = function (name, profit, markup, useprofit, carpetonly, cushion, usecu
     this.isRetailYd = isRetailYd
 }
 
-
-function setDealerData(dealerName) {
+function setDealerList(dealerName) {
 
     //get Dealers from storage
     var Dealers = $.makeArray($.Dealer);
@@ -1936,7 +1935,7 @@ function setDealerData(dealerName) {
             });
 
             $("#apply_profile_" + index).click(function () {
-                applyProfile( index , dealer.name );
+                applyProfile(index, dealer.name);
             });
 
             $("#button_edt_pro_" + index).click(function () {
@@ -1959,7 +1958,48 @@ function setDealerData(dealerName) {
 
 
 
-    //$("#selectDealerSelection").selectmenu("refresh");
+
+    setDealerData(dealerName);
+}
+
+
+function setDealerData(dealerName) {
+
+    //get Dealers from storage
+    var Dealers = $.makeArray($.Dealer);
+    var data = localStorage['mohawkDealers']
+
+    //$('#selectDealerSelection').removeClass("ui-hidden-accessible");
+
+    //$('#inputBtnAdd').removeClass("ui-hidden-accessible");
+
+    if (data == undefined || data == null || data == "") {
+        return null;
+    }
+
+    Dealers = JSON.parse(data);
+
+    SortedDealers = Dealers.sort(function (obj1, obj2) {
+        if (obj1 == null) {
+            return true;
+        }
+        if (obj2 == null) {
+            return false;
+        }
+
+        if (obj1.name == '') {
+            return true;
+        }
+
+        if (obj2.name == '') {
+            return false;
+        }
+
+        return obj1.name > obj2.name;
+    });
+
+
+  
 
     //get matching dealer
     var filteredDealer = $.grep(Dealers, function (item) {
@@ -2338,7 +2378,7 @@ function onSaveDealerClick() {
     saveDealer();
     renameWholesaleByDealerName(selectedDealerName, newDealerName);
     renameRetailByDealerName(selectedDealerName, newDealerName);
-    setDealerData(newDealerName);
+    setDealerList(newDealerName);
     // hideButtons();
 }
 
@@ -2405,7 +2445,7 @@ function onDeleteDealerClick() {
     deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
     clearAll();
 
-    setDealerData('');
+    setDealerList('');
 
     //setDealerData(dealerName);
     //hideButtons();
