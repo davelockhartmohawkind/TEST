@@ -137,6 +137,8 @@ $(document).ready(function () {
     $("#checkboxOther").click(onDealerInputBlur2);
     $("#inputOther").blur(onDealerInputBlur2);
 
+    $("#products_remove").click(clearAllProducts);
+
     setDealerData('test');
 
     /* Tabs Activiation
@@ -477,7 +479,7 @@ var applyProfile = function (target_profile, dealerName) {
 
     global_selectDealerSelection = dealerName;
     onSaveDealerClick();
-
+    global_selectDealerSelection = global_inputDealerSelection;
 
 }
 
@@ -504,6 +506,7 @@ var deleteProfile = function (target_profile, dealerName) {
     global_inputDealerSelection = dealerName;
     global_selectDealerSelection = dealerName;
     onDeleteDealerClick();
+
 
 
 }
@@ -1914,14 +1917,14 @@ function setDealerData(dealerName) {
             newEntry = newEntry + '                             <input type="hidden" id="profile_name_' + index + '" name="profile_name" value="' + dealer.name + '" />';
             newEntry = newEntry + '                         	<input type="text" id="input_profile_' + index + '" name="profile_' + index + '" size="25" class="namedit" value="' + dealer.name + '" />';
             newEntry = newEntry + '                         </form>';
-            newEntry = newEntry + '                         <a href="javascript:applyProfile(\'' + index + '\',\'' + dealer.name + '\');" class="applyit" id="apply_profile_' + index + '"></a>';
+            newEntry = newEntry + '                         <a href="#" class="applyit" id="apply_profile_' + index + '"></a>';
             newEntry = newEntry + '                          </div>';
 
             newEntry = newEntry + '                     </div>';
 
             newEntry = newEntry + '                     <div class="edt_controls_wrapper">';
-            newEntry = newEntry + '                     	<a href="javascript:editProfile(\'' + index + '\',\'' + dealer.name + '\')" class="button_edt left" id="button_edt_pro">Edit Profile Name</a>';
-            newEntry = newEntry + '                         <a href="javascript:deleteProfile(\'' + index + '\',\'' + dealer.name + '\')" class="button_edt left" id="button_edt_x">X</a>';
+            newEntry = newEntry + '                     	<a href="#" class="button_edt left" id="button_edt_pro_' + index + '">Edit Profile Name</a>';
+            newEntry = newEntry + '                         <a href="#" class="button_edt left" id="button_edt_x_' + index + '">X</a>';
 
             newEntry = newEntry + '                     </div>';
 
@@ -1938,6 +1941,22 @@ function setDealerData(dealerName) {
             $("#profile_" + index).click(function () {
                 onDealerSelect("profile_" + index, dealer.name);
             });
+
+            $("#apply_profile_" + index).click(function () {
+                applyProfile( index , dealer.name );
+            });
+
+            $("#button_edt_pro_" + index).click(function () {
+                editProfile(index, dealer.name);
+            });
+
+            $("#button_edt_x_" + index).click(function () {
+                deleteProfile(index, dealer.name);
+            });
+
+
+
+
         }
     });
 
@@ -2392,6 +2411,8 @@ function onDeleteDealerClick() {
 
     deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
     clearAll();
+
+    setDealerData('');
 
     //setDealerData(dealerName);
     //hideButtons();
