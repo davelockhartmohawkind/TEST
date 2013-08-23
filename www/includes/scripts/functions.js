@@ -1573,7 +1573,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                 </div>';
     mytable = mytable + '                                 <div class="datacell3">';
     mytable = mytable + '                                 	<div class="cellpad">';
-    mytable = mytable + '                                 		<a href="#"  id="btnwholesaleCostSave_' + itemId + '" class="directional_right"></a>';
+    mytable = mytable + '                                 		<a href="#"  id="btnwholesaleCostSave_BROKEN' + itemId + '" class="directional_right"></a>';
     mytable = mytable + '                                  	</div>';
     mytable = mytable + '                                 </div>';
     mytable = mytable + '                                 <div class="datacell4">';
