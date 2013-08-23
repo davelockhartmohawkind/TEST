@@ -405,7 +405,8 @@ function onDealerSelect(targetProfile, dealerName) {
 // Functions
 var addProfile = function () {
     // Add new profiles
-    alert('Add Profile Function - addProfile() - is currently empty. ');
+    //alert('Add Profile Function - addProfile() - is currently empty. ');
+    onAddDealerBtnClick();
 
 }
 
