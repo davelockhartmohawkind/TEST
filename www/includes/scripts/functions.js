@@ -138,6 +138,7 @@ $(document).ready(function () {
     $("#inputOther").blur(onDealerInputBlur2);
 
     $("#products_remove").click(clearAllProducts);
+    $("#product_add").click(addProduct)
 
     setDealerData('test');
 
@@ -490,24 +491,15 @@ var deleteProfile = function (target_profile, dealerName) {
 
     var index = parseInt(target_profile);
 
-    if (index == 0) {
-        alert('The Default Dealer Profile cannot be deleted.');
-    }
-    else {
         var x = confirm('Are you sure you would like to delete this profile?');
 
+        alert(x);
         if (x == true) {
             $('.list_item').eq(index).remove();
+            global_inputDealerSelection = dealerName;
+            global_selectDealerSelection = dealerName;
+            onDeleteDealerClick();
         }
-
-
-
-    }
-    global_inputDealerSelection = dealerName;
-    global_selectDealerSelection = dealerName;
-    onDeleteDealerClick();
-
-
 
 }
 
@@ -518,16 +510,17 @@ var resetCosts = function () {
 
 }
 
-var addProduct = function () {
+function addProduct() {
     // Add Product to calculation results
     //alert('Add Product Function  ');
     if (global_doWholeSale == "true") {
+
         addBlankRow();
         return;
-    }
-
-    addBlankRetailRow();
-
+        }
+       
+        addBlankRetailRow();
+   
 }
 
 
@@ -537,7 +530,7 @@ var clearProduct = function () {
 
 }
 
-var clearAllProducts = function () {
+function clearAllProducts() {
     // Remove All Products from calculation results
   
     var x = confirm('Are you sure you would like to clear all products?');
