@@ -1577,7 +1577,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                 </div>';
     mytable = mytable + '                                 <div class="datacell3">';
     mytable = mytable + '                                 	<div class="cellpad">';
-    mytable = mytable + '                                 		<div  class="directional_right"></div>';
+    mytable = mytable + '                                 		<div  id="btnwholesaleCostSave_' + itemId + '" class="directional_right"></div>';
     mytable = mytable + '                                  	</div>';
     mytable = mytable + '                                 </div>';
     mytable = mytable + '                                 <div class="datacell4">';
@@ -1621,7 +1621,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
 
     $("#btnwholesaleCostDelete_" + itemId).click(onWholesaleCostDeleteButtonClick);
 
-
+    $("#btnwholesaleCostSave_" + itemId).click(onWholesaleCostSaveButtonClick);
 
     $("#wholesaleCost_" + itemId).blur(onWholesaleCostSaveButtonClick);
     $("#wholesaleProduct_" + itemId).blur(onWholesaleCostSaveButtonClick);
