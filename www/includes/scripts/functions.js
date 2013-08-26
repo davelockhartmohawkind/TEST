@@ -1,3 +1,17 @@
+// CALCULATE THE DROPSHADE HEIGHT
+//Get the screen height and width
+var mHeight = $(window).height();
+var mWidth = $(window).width();
+var mMargin = 4;
+var mTab = 62;
+var dropShade = mHeight - mMargin;
+var dropWrapper = dropShade - mTab;
+var dsHeight = String(dropShade) + 'px';
+var dsTop = String(-(dropShade - (mTab + 4))) + 'px';
+var dsTop2 = String(-(dropShade - (mTab + 4)) - 4) + 'px';
+var dmHeight = String(dropWrapper) + 'px';
+var platform = '';
+
 var target_action = '';
 var target_profile = 'Select Dealer Here';
 //localStorage.setItem('target_action', target_action);
@@ -24,6 +38,62 @@ var global_isRetailYd = "true";
 //var target_profile3 = 'Bobs';
 //localStorage.setItem('target_profile3', target_profile3);
 //---------------------------------------------------------
+/*! A fix for the iOS orientationchange zoom bug.
+ Script by @scottjehl, rebound by @wilto.
+ MIT / GPLv2 License.
+*/
+(function (w) {
+
+    // This fix addresses an iOS bug, so return early if the UA claims it's something else.
+    var ua = navigator.userAgent;
+    if (!(/iPhone|iPad|iPod/.test(navigator.platform) && /OS [1-5]_[0-9_]* like Mac OS X/i.test(ua) && ua.indexOf("AppleWebKit") > -1)) {
+        return;
+    }
+
+    var doc = w.document;
+
+    if (!doc.querySelector) { return; }
+
+    var meta = doc.querySelector("meta[name=viewport]"),
+        initialContent = meta && meta.getAttribute("content"),
+        disabledZoom = initialContent + ",maximum-scale=1",
+        enabledZoom = initialContent + ",maximum-scale=10",
+        enabled = true,
+		x, y, z, aig;
+
+    if (!meta) { return; }
+
+    function restoreZoom() {
+        meta.setAttribute("content", enabledZoom);
+        enabled = true;
+    }
+
+    function disableZoom() {
+        meta.setAttribute("content", disabledZoom);
+        enabled = false;
+    }
+
+    function checkTilt(e) {
+        aig = e.accelerationIncludingGravity;
+        x = Math.abs(aig.x);
+        y = Math.abs(aig.y);
+        z = Math.abs(aig.z);
+
+        // If portrait orientation and in one of the danger zones
+        if ((!w.orientation || w.orientation === 180) && (x > 7 || ((z > 6 && y < 8 || z < 8 && y > 6) && x > 5))) {
+            if (enabled) {
+                disableZoom();
+            }
+        }
+        else if (!enabled) {
+            restoreZoom();
+        }
+    }
+
+    w.addEventListener("orientationchange", restoreZoom, false);
+    w.addEventListener("devicemotion", checkTilt, false);
+
+})(this);
 
 
 
@@ -43,34 +113,108 @@ $(document).ready(function () {
     //$('#profile_3').html(target_profile3);
     //---------------------------------------------------------
 
+    // Hide toolbar on Android devices
+
+    if (($.client.os == "Linux") && ($.client.browser == "Mozilla")) {
+
+        function hideAddressBar() {
+            if (!window.location.hash) {
+                if (document.height <= window.outerHeight + 10) {
+                    document.body.style.height = (window.outerHeight + 50) + 'px';
+                    setTimeout(function () { window.scrollTo(0, 1); }, 50);
+                }
+                else {
+                    setTimeout(function () { window.scrollTo(0, 1); }, 0);
+                }
+            }
+        }
+        window.addEventListener("load", hideAddressBar);
+        window.addEventListener("orientationchange", hideAddressBar);
+
+    }
+
+
+    // Fix Keyboard Toggle for iOS
+    // Check if it is an iOS device
+    if (/(iPhone|iPod|iPad)/i.test(navigator.userAgent)) {
+        if (/OS [2-4]_\d(_\d)? like Mac OS X/i.test(navigator.userAgent)) {
+            // iOS 2-5 
+            platform = "oldiOS";
+        } else if (/CPU like Mac OS X/i.test(navigator.userAgent)) {
+            // iOS 1 
+            platform = "oldiOS";
+        } else {
+            // iOS 6 
+            platform = "iOS";
+        }
+    }
+
+
+    if ((platform == "oldiOS") && (platform == "iOS")) {
+        $(document).on('blur', 'input, textarea', function () {
+            setTimeout(function () {
+                window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+            }, 0);
+        });
+
+    }
+    window.addEventListener('orientationchange', function () {
+        // If dropShade is down, slide up
+        var shadeState = $('.dropshade').css('top');
+
+        if (shadeState == '-4px') {
+            //Get the current dimension values
+            var winH = $(window).height();
+            mHeight = winH;
+
+            dropShade = mHeight - mMargin;
+            dropWrapper = dropShade - mTab;
+            dsHeight = String(dropShade) + 'px';
+            dsTop = String(-(dropShade - (mTab + 4))) + 'px';
+            dmHeight = String(dropWrapper) + 'px';
+
+            $('.dropmenu_wrapper').stop().animate({
+                height: dmHeight
+            }, 300, 'easeInQuad', function () {
+
+            });
+
+        }
+
+    }, false);
+
+
+
+
     // Make default profile active... change to last active
     $('.item_name h2').first().addClass('active');
 
     // Dropdown Menu Toggle
-    $('#dropshade_trigger').toggle(function () {
-        $('#profile_mgmt').stop().animate({
-            top: '-9%'
-        }, 500, 'easeOutQuad', function () {
-            // Animation complete
-            $('#tabicon').css("background-image", "url(images/ui/arrow_up_FFF.png)");
+    //getHeightValues();
 
-        }).animate({
-            top: '-10%'
-        }, 300, 'easeInQuad');
+    var initTop = String(-dropShade) + 'px';
+    //alert(initTop+' | ' + dsTop);
+    $('.dropshade').css('height', dsHeight);
+    $('.dropmenu_wrapper').css('height', dmHeight);
+    $('.dropshade').css('top', initTop);
 
 
-    }, function () {
-        $('#profile_mgmt').stop().animate({
-            top: '-100%'
-        }, 500, 'easeInQuad', function () {
-            // Animation complete
-            $('#tabicon').css("background-image", "url(images/ui/arrow_down_FFF.png)");
-        }).animate({
-            top: '-99%'
-        }, 300, 'easeOutQuad');
+    $('.dropshade').stop().animate({
+        top: dsTop
+    }, 300, 'easeInQuad', function () {
 
     });
 
+
+    $('#dropshade_trigger').toggle(function () {
+
+        shadeDown();
+
+    }, function () {
+
+        shadeUp();
+
+    });
 
 
     // Rename Activator
@@ -406,6 +550,129 @@ function onDealerSelect(targetProfile, dealerName) {
 }
 
 // Functions
+
+// Functions
+var shadeDown = function () {
+    // Profile Manager Down
+    // lock scroll position, but retain settings for later
+    var scrollPosition = [
+      self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+      self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+    ];
+    var html = jQuery('html'); // it would make more sense to apply this to body, but IE7 won't have that
+    html.data('scroll-position', scrollPosition);
+    html.data('previous-overflow', html.css('overflow'));
+    html.css('overflow', 'hidden');
+    window.scrollTo(scrollPosition[0], scrollPosition[1]);
+
+    // lock scroll touch devices
+    document.ontouchmove = function (e) {
+        e.preventDefault();
+    }
+
+    //Get the current dimension values
+    var winH = $(window).height();
+    //alert(winH);
+    if (winH != mHeight) {
+        mHeight = winH;
+    }
+
+    dropShade = mHeight - mMargin;
+    dropWrapper = dropShade - mTab;
+    dsHeight = String(dropShade) + 'px';
+    dsTop = String(-(dropShade - (mTab + 4))) + 'px';
+    dmHeight = String(dropWrapper) + 'px';
+
+    dsTop2 = String(-(dropShade - (mTab + 4)) - 4) + 'px';
+
+    $('.dropshade').css('height', dsHeight);
+    $('.dropshade').css('top', dsTop);
+    $('.dropmenu_wrapper').css('height', dmHeight);
+
+    $('#profile_mgmt').stop().animate({
+        top: '0px'
+    }, 500, 'easeOutQuad', function () {
+        // Animation complete
+        $('#tabicon').css("background-image", "url(images/ui/arrow_up_FFF.png)");
+
+    }).animate({
+        top: '-4px'
+    }, 300, 'easeInQuad');
+
+}
+
+var shadeUp = function () {
+    // Profile Manager Up
+
+    // unlock scroll position
+    var html = jQuery('html');
+    var scrollPosition = html.data('scroll-position');
+    html.css('overflow', html.data('previous-overflow'));
+    window.scrollTo(scrollPosition[0], scrollPosition[1])
+
+    // unlock scroll on touch devices
+    doTouchMove();
+
+    //Get the current dimension values
+    var winH = $(window).height();
+    //alert(winH);
+    if (winH != mHeight) {
+        mHeight = winH;
+    }
+
+    dropShade = mHeight - mMargin;
+    dropWrapper = dropShade - mTab;
+    dsHeight = String(dropShade) + 'px';
+    dsTop = String(-(dropShade - (mTab + 4))) + 'px';
+    dmHeight = String(dropWrapper) + 'px';
+
+    dsTop2 = String(-(dropShade - (mTab + 4)) - 4) + 'px';
+
+    $('#profile_mgmt').stop().animate({
+        top: dsTop2
+    }, 500, 'easeInQuad', function () {
+        // Animation complete
+        $('#tabicon').css("background-image", "url(images/ui/arrow_down_FFF.png)");
+    }).animate({
+        top: dsTop
+    }, 300, 'easeOutQuad', function () {
+        $('.dropshade').css('height', dsHeight);
+        $('.dropshade').css('top', dsTop);
+        $('.dropmenu_wrapper').css('height', dmHeight);
+    });
+
+}
+
+function doTouchMove(state) {
+    document.ontouchmove = function (e) {
+        return state;
+    }
+}
+
+
+var getHeightValues = function () {
+    mHeight = $(window).height();
+    mWidth = $(window).width();
+    mMargin = 10;
+    mTab = 62;
+    dropShade = mHeight - mMargin;
+    dropWrapper = dropShade - mTab;
+
+    alert("Window height: " + mHeight +
+  '\n' +
+  "DropShade height: " + dropShade +
+  '\n' +
+  "Dropwrapper height: " + dropWrapper);
+
+}
+
+
+
+
+
+
+
+
 var addProfile = function () {
     // Add new profiles
     //alert('Add Profile Function - addProfile() - is currently empty. ');
@@ -701,7 +968,7 @@ function setRetailData(dealerName) {
 
 
 
-    filteredDealer.sort(function (obj1, obj2) {
+    var SortedDealer = filteredDealer.sort(function (obj1, obj2) {
         if (obj1 == null) {
             return true;
         }
@@ -723,7 +990,7 @@ function setRetailData(dealerName) {
 
     $("#tbodyRetail").empty();
     var intemnumber = 0;
-    $.each(filteredDealer, function (index, retailPriceCalc) {
+    $.each(SortedDealer, function (index, retailPriceCalc) {
         var retailYd = 0;
         var retailYdWithMarkup = 0;
         var retailFt = 0;
@@ -852,8 +1119,7 @@ function setWholesaleData(dealerName) {
         return;
     }
 
-
-    filteredDealer.sort(function (obj1, obj2) {
+    var SortedDealer =  filteredDealer.sort(function (obj1, obj2) {
         if (obj1 == null) {
             return true;
         }
@@ -875,7 +1141,7 @@ function setWholesaleData(dealerName) {
 
     $("#tbodyWholesale").empty();
     var intemnumber = 0;
-    $.each(filteredDealer, function (index, wholesalePriceCalc) {
+    $.each(SortedDealer, function (index, wholesalePriceCalc) {
         var retailYd = 0;
         var retailYdWithMarkup = 0;
         var retailFt = 0;
@@ -1549,7 +1815,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     // var rowText = $("#WholesaleToRetailRow").html();
 
     var mytable = '';//                                 <div class="datarow spaced" id="productdata_1">';
-    var mytable = ' <div class="clear" ></div>';
+    var mytable = '                           <div class="clear" ></div>';
     mytable = mytable + '                             <div class="round_wrapper2 bgmed">';
 
     mytable = mytable + '                              	<div class="datacell1">';
@@ -1917,7 +2183,7 @@ function setDealerList(dealerName) {
             newEntry = newEntry + '                     <div class="edt_controls_wrapper">';
             newEntry = newEntry + '                     	<a href="#" class="button_edt left" id="button_edt_pro_' + index + '">Edit Profile Name</a>';
             newEntry = newEntry + '                         <a href="#" class="button_edt left" id="button_edt_x_' + index + '">X</a>';
-
+            newEntry = newEntry + '                         <span class="mobileonly"><a href="#" class="button_edt_img left" id="button_edt_prosm' + index + '"></a></span>';
             newEntry = newEntry + '                     </div>';
 
 
@@ -1939,6 +2205,10 @@ function setDealerList(dealerName) {
             });
 
             $("#button_edt_pro_" + index).click(function () {
+                editProfile(index, dealer.name);
+            });
+
+            $("#button_edt_prosm" + index).click(function () {
                 editProfile(index, dealer.name);
             });
 

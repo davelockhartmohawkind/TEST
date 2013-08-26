@@ -40,7 +40,7 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-touch-icon-114x114.png">
     <link rel="apple-touch-icon" sizes="512x512" href="images/icons/appv2_icon_512x512.png">
-    <link rel="apple-touch-icon" sizes="1024x1024" href="images/icons/appv2_icon_1024x1024.png">
+
     <link rel="apple-touch-startup-image" href="images/icons/startup.png" />
     <link rel="image_src" href="images/icons/display-thumb.jpg" />
     
@@ -50,7 +50,7 @@
     	<script src="includes/jquery/jquery.min.js"></script>
         <script src="includes/jquery/jquery.easing.1.3.js"></script>
      <script src="includes/jquery/jquery.mobile-1.3.2.min.js"></script>
-    <!--	<script src="includes/scripts/PriceCalc.js"></script>-->
+     <script src="includes/scripts/jquery.client.js"></script>
 		<script src="includes/scripts/functions.js"></script>
       <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="includes/scripts/index.js"></script>
@@ -111,7 +111,7 @@
                                 <div class="edt_controls_wrapper">
                                 	<a href="javascript:editProfile('0')" class="button_edt left" id="button_edt_pro">Edit Profile Name</a>
                                     <a href="javascript:deleteProfile('0')" class="button_edt left" id="button_edt_x">X</a>
-                                
+                                    <span class="mobileonly"><a href="javascript:editProfile('0')" class="button_edt_img left" id="button_edt_prosm"></a></span>
                                 </div>
                             
                             
@@ -278,10 +278,10 @@
                             <div class="halfed">
                                 <div class="right_wrapper bglight">
                                 
-                                	<div class="center_wrap" style="width:84px;">
+                                	
                                 		<input type="text" id="inputProfitMarginOrMarkup" name="inputProfitMarginOrMarkup" class="fatinput left" value="40" />
                                     	<h4 style="text-align:left;">%</h4>
-                                    </div>
+                                    
                                     
                                 </div>
                         
@@ -933,7 +933,7 @@
                 
                 <div class="spacer3"></div>
             
-            <h5 style="text-align:right">V&nbsp;1.1.9</h5>
+            <h5 style="text-align:right">V&nbsp;1.1.11</h5>
             
             </div>
             
