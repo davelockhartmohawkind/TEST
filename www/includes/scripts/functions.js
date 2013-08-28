@@ -27,6 +27,8 @@ var global_useProfitMargin = "false";
 var global_isRetailYd = "true";
 
 
+
+
 //TESTING ONLY
 //---------------------------------------------------------
 //var target_profile1 = 'Dealer Profile 1';
@@ -274,12 +276,20 @@ $(document).ready(function () {
 
     $("#checkboxCushion").click(onDealerInputBlur2);
     $("#inputCushion").blur(onDealerInputBlur2);
+    $("#inputCushion").focus(ClearOnInputFocus);
+
     $("#checkboxInstallation").click(onDealerInputBlur2);
     $("#inputInstallation").blur(onDealerInputBlur2);
+    $("#inputInstallation").focus(ClearOnInputFocus);
+
+
     $("#checkboxFreight").click(onDealerInputBlur2);
     $("#inputFreight").blur(onDealerInputBlur2);
+    $("#inputFreight").focus(ClearOnInputFocus);
+
     $("#checkboxOther").click(onDealerInputBlur2);
     $("#inputOther").blur(onDealerInputBlur2);
+    $("#inputOther").focus(ClearOnInputFocus);
 
     $("#products_remove").click(clearAllProducts);
     $("#product_add").click(addProduct)
@@ -529,6 +539,13 @@ function onDealerInputBlur2() {
     //alert(this.id);
     saveDealer();
     setDealerData(global_inputDealerSelection);
+
+}
+
+function ClearOnInputFocus() {
+    var testme = this.id;
+   
+    this.value = '';
 
 }
 
@@ -1059,7 +1076,7 @@ function setRetailData(dealerName) {
                 var yardby9 = (retailPriceCalc.wholesaleYd / 9).toFixed(2);
             }
             else {
-                yardby9 = 0;
+                yardby9 = 0.00;
             }
 
 
@@ -1735,6 +1752,9 @@ function onWholesaleCostSaveButtonClick() {
     var dealerName = global_selectDealerSelection;
     var productName = $("#wholesaleProduct_" + myArray[1]).val();
     var wholesaleYd = $("#wholesaleCost_" + myArray[1]).val();
+    if (wholesaleYd == '') {
+        wholesaleYd = "0.00";
+    }
     var itemId = myArray[1];
     if (dealerName == "") {
         alert("Please select a dealer");
@@ -1757,7 +1777,14 @@ function onRetailCostSaveButtonClick() {
     var dealerName = global_selectDealerSelection;
     var productName = $("#retailProduct_" + myArray[1]).val();
     var retailYd = $("#retailCost_" + myArray[1]).val();
+    if (retailYd == '') {
+        retailYd = "0.00";
+    }
+    
     var retailFt = $("#retailCostFt_" + myArray[1]).val();
+    if (retailFt == '') {
+        retailFt = "0.00";
+    }
     var itemId = myArray[1];
     if (dealerName == "") {
         alert("Please select a dealer");
@@ -1831,7 +1858,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                     	<h6 class="mobileonly mth">Carpet Cost <span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + ' <div class="wrapper_nornd bglight">';
     mytable = mytable + '                                           <h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="text" id="wholesaleCost_' + itemId + '" name="carpetcost_1" class="thinput left" value="' + wholesaleAmount + '" />';
+    mytable = mytable + '                                            <input type="number" id="wholesaleCost_' + itemId + '" name="carpetcost_1" class="thinput left" value="' + wholesaleAmount + '" />';
     mytable = mytable + '                                             <div class="clear"></div>';
     mytable = mytable + '                                         </div>';
 
@@ -1886,6 +1913,8 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     $("#btnwholesaleCostSave_" + itemId).click(onWholesaleCostSaveButtonClick);
 
     $("#wholesaleCost_" + itemId).blur(onWholesaleCostSaveButtonClick);
+    $("#wholesaleCost_" + itemId).focus(ClearOnInputFocus);
+   
     $("#wholesaleProduct_" + itemId).blur(onWholesaleCostSaveButtonClick);
     $("#tableWholesale").trigger("create");
 
@@ -1926,7 +1955,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     mytable = mytable + '                                    <h6 class="mobileonly mth">Retail Price <span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + '                                       <div class="wrapper_nornd bglight">';
     mytable = mytable + '                                           <h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="text" id="retailCost_' + itemId + '" name="retailCost_" class="thinput left" value="' + retailAmountYd + '" />';
+    mytable = mytable + '                                            <input type="number" id="retailCost_' + itemId + '" name="retailCost_" class="thinput left" value="' + retailAmountYd + '" />';
     mytable = mytable + '                                            <div class="clear"></div>';
     mytable = mytable + '                                        </div>';
 
@@ -1936,7 +1965,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     mytable = mytable + '                                	<div class="cellpad">';
     mytable = mytable + '                                    	<h6 class="mobileonly mth"><span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + '                                        <div class="wrapper_nornd bglight"><h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="text" id="retailCostFt_' + itemId + '" name="sqft_1" class="thinput left" value="' + retailAmountFt + '" />';
+    mytable = mytable + '                                            <input type="number" id="retailCostFt_' + itemId + '" name="sqft_1" class="thinput left" value="' + retailAmountFt + '" />';
     mytable = mytable + '                                            <div class="clear"></div>';
     mytable = mytable + '                                        </div>';
 
@@ -1977,6 +2006,9 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
 
     $("#retailCost_" + itemId).blur(onRetailCostSaveButtonClick);
     $("#retailCostFt_" + itemId).blur(onRetailCostSaveButtonClick);
+
+    $("#retailCostFt_" + itemId).focus(ClearOnInputFocus);
+    $("#retailCost_" + itemId).focus(ClearOnInputFocus);
 
     $("#retailCost_" + itemId).click(onSetRetailYd);
     $("#retailCostFt_" + itemId).click(onSetRetailFt);
@@ -2668,12 +2700,30 @@ function saveDealer() {
     var useProfit = $("#radioProfitMargin").is(':checked').toString();
 
     var cushion = $("#inputCushion").val();
+    if (cushion == '') {
+        cushion = '0.00';
+    }
+
     var useCushion = $("#checkboxCushion").is(':checked').toString();
-    var installation = $("#inputInstallation").val();;
+
+    var installation = $("#inputInstallation").val();
+    if (installation == '') {
+        installation = '0.00';
+    }
+
     var useInstallation = $("#checkboxInstallation").is(':checked').toString();
+
     var freight = $("#inputFreight").val();
+    if (freight == '') {
+        freight = '0.00';
+    }
+
     var useFreight = $("#checkboxFreight").is(':checked').toString();
     var other = $("#inputOther").val();
+    if (other == '') {
+        other = '0.00';
+    }
+
     var useOther = $("#checkboxOther").is(':checked').toString();
 
     var isRetailYd = $("#radioYdFt1").is(':checked').toString();
