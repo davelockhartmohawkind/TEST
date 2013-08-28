@@ -26,6 +26,11 @@ var global_doRetail = "false";
 var global_useProfitMargin = "false";
 var global_isRetailYd = "true";
 
+var global_tmpInputCushion = "0.00";
+var global_tmpInputFreight = "0.00";
+var global_tmpInputInstallation = "0.00";
+var global_tmpInputOther = "0.00";
+
 
 
 
@@ -544,6 +549,21 @@ function onDealerInputBlur2() {
 
 function ClearOnInputFocus() {
     var testme = this.id;
+
+    if (this.id == 'inputCushion') {
+        global_tmpInputCushion = this.value;
+    }
+    if (this.id == 'inputFreight') {
+        global_tmpInputFreight = this.value;
+    }
+    if (this.id == 'inputInstallation') {
+        global_tmpInputInstallation = this.value;
+    }
+    if (this.id == 'inputOther') {
+        global_tmpInputOther = this.value;
+    }
+
+
    
     this.value = '';
 
@@ -1458,7 +1478,7 @@ function deleteWholesaleByDealerName(dealerName) {
         //update UI with data
         if (filteredDealer.length < 1) {
             //abandon
-            return;
+            //return;
         }
 
 
@@ -1557,7 +1577,7 @@ function deleteRetailByDealerName(dealerName) {
         //update UI with data
         if (filteredDealer.length < 1) {
             //alert(item + " already exist");
-            return;
+            //return;
         }
 
 
@@ -1834,9 +1854,10 @@ function addBlankRetailRow(RetailYd) {
 
 function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolIncludeSave, boolIncludeDelete, itemId) {
 
+    var setFocus = false;
     if (itemId == null || itemId == "") {
         itemId = (new Date()).getTime();
-
+        setFocus = true;
     }
 
     // var rowText = $("#WholesaleToRetailRow").html();
@@ -1918,16 +1939,19 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     $("#wholesaleProduct_" + itemId).blur(onWholesaleCostSaveButtonClick);
     $("#tableWholesale").trigger("create");
 
-
+    if (setFocus == true) {
+        $("#wholesaleProduct_" + itemId).focus();
+    }
 
 }
 
 
 function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd, wholesaleFt, boolIncludeSave, boolIncludeDelete, itemId, retailYd) {
+    var setFocus = false;
 
     if (itemId == null || itemId == "") {
         itemId = (new Date()).getTime();
-
+        setFocus = true;
     }
 
     if (retailYd == undefined || retailYd == null || retailYd == "") {
@@ -2018,7 +2042,9 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     $("#btnretailCostSave_" + itemId).click(onRetailCostSaveButtonClick);
 
     $("#tableRetail").trigger("create");
-
+    if (setFocus == true) {
+        $("#retailProduct_" + itemId).focus();
+    }
 
 
 }
@@ -2341,6 +2367,7 @@ function setDealerData(dealerName) {
             $('#tabInstalled').removeClass('active');
             $('#tabCarpetOnly').addClass('active');
             global_carpetOnly = "true";
+            $("#carpetonly").show().addClass('active').siblings().hide().removeClass('active');
 
 
         }
@@ -2348,6 +2375,7 @@ function setDealerData(dealerName) {
             $('#tabInstalled').addClass('active');
             $('#tabCarpetOnly').removeClass('active');
             global_carpetOnly = "false";
+            $("#installed").show().addClass('active').siblings().hide().removeClass('active');
         }
 
         //TODO REMOVE
@@ -2701,27 +2729,27 @@ function saveDealer() {
 
     var cushion = $("#inputCushion").val();
     if (cushion == '') {
-        cushion = '0.00';
+        cushion = global_tmpInputCushion ;
     }
 
     var useCushion = $("#checkboxCushion").is(':checked').toString();
 
     var installation = $("#inputInstallation").val();
     if (installation == '') {
-        installation = '0.00';
+        installation = global_tmpInputInstallation;
     }
 
     var useInstallation = $("#checkboxInstallation").is(':checked').toString();
 
     var freight = $("#inputFreight").val();
     if (freight == '') {
-        freight = '0.00';
+        freight = global_tmpInputFreight;
     }
 
     var useFreight = $("#checkboxFreight").is(':checked').toString();
     var other = $("#inputOther").val();
     if (other == '') {
-        other = '0.00';
+        other = global_tmpInputOther;
     }
 
     var useOther = $("#checkboxOther").is(':checked').toString();
