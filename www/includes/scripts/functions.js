@@ -30,6 +30,13 @@ var global_tmpInputCushion = "0.00";
 var global_tmpInputFreight = "0.00";
 var global_tmpInputInstallation = "0.00";
 var global_tmpInputOther = "0.00";
+var global_tmpInputProfitMarginOrMarkup = "0";
+
+var global_putBackValue = "";
+var global_putBackValueWholeSale = "";
+var global_putBackValueRetailYd = "";
+var global_putBackValueRetailFt = "";
+
 
 
 
@@ -269,6 +276,7 @@ $(document).ready(function () {
     $("#radioProfitMargin").click(onDealerInputBlur2);
     $("#radioMarkup").click(onDealerInputBlur2);
     $("#inputProfitMarginOrMarkup").blur(onDealerInputBlur2);
+    $("#inputProfitMarginOrMarkup").focus(ClearOnInputFocus);
     //$(".tabs").click(onDealerInputBlur2);
 
     $("#tabCarpetOnly").click(onCarpetOnlyClick);
@@ -521,6 +529,7 @@ function onCarpetOnlyClick() {
 
 
     onDealerInputBlur2();
+    $("#masthead").focus();
 
 }
 
@@ -535,6 +544,7 @@ function onInstalledClick() {
 
     $("#installed").show().addClass('active').siblings().hide().removeClass('active');
     onDealerInputBlur2();
+    $("#masthead").focus();
 
 }
 
@@ -552,19 +562,51 @@ function ClearOnInputFocus() {
 
     if (this.id == 'inputCushion') {
         global_tmpInputCushion = this.value;
+        this.value = '';
+        return;
     }
     if (this.id == 'inputFreight') {
         global_tmpInputFreight = this.value;
+        this.value = '';
+        return;
     }
     if (this.id == 'inputInstallation') {
         global_tmpInputInstallation = this.value;
+        this.value = '';
+        return;
     }
     if (this.id == 'inputOther') {
         global_tmpInputOther = this.value;
+        this.value = '';
+        return;
     }
 
+    if (this.id == 'inputProfitMarginOrMarkup') {
+        global_tmpInputProfitMarginOrMarkup = this.value;
+        this.value = '';
+        return;
+    }
 
-   
+    if (this.id.indexOf("wholesaleCost_") == 0) {
+        global_putBackValueWholeSale = this.value;
+        this.value = '';
+        return;
+    }
+
+    if (this.id.indexOf("retailCost_") == 0) {
+        global_putBackValueRetailYd = this.value;
+        this.value = '';
+        return;
+    }
+
+    if (this.id.indexOf("retailCostFt_") == 0) {
+        global_putBackValueRetailFt = this.value;
+        this.value = '';
+        return;
+    }
+        
+
+    global_putBackValue = this.value;
     this.value = '';
 
 }
@@ -714,6 +756,7 @@ var addProfile = function () {
     // Add new profiles
     //alert('Add Profile Function - addProfile() - is currently empty. ');
     onAddDealerBtnClick();
+   
 
 }
 
@@ -795,7 +838,7 @@ var deleteProfile = function (target_profile, dealerName) {
 
     var index = parseInt(target_profile);
 
-        var x = confirm('Are you sure you would like to delete this profile?');
+        var x = confirm('Are you sure you would like to delete this profile?','Caution');
 
         //alert(x);
         if (x == true) {
@@ -837,13 +880,26 @@ var clearProduct = function () {
 function clearAllProducts() {
     // Remove All Products from calculation results
   
-    var x = confirm('Are you sure you would like to clear all products?');
+    //var x = confirm('Are you sure you would like to clear all products?', 'Caution');
+    $("#dialog-confirm").dialog({
+        resizable: false,
+        height: 140,
+        modal: true,
+        buttons: {
+            "Delete all items": function () {
+                $(this).dialog("close");
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
+        }
+    });
 
     if (x == true) {
        
-        deleteWholesaleByDealerName(global_selectDealerSelection);
-        deleteRetailByDealerName(global_selectDealerSelection);
-        onDealerInputBlur2();
+        //deleteWholesaleByDealerName(global_selectDealerSelection);
+        //deleteRetailByDealerName(global_selectDealerSelection);
+        //onDealerInputBlur2();
     }
 
 }
@@ -1259,6 +1315,95 @@ function saveWholesale(itemId, dealerName, productName, wholesaleYd) {
     addWholesale(itemId, dealerName, productName, wholesaleYd);
 
 }
+
+function saveWholesale2(itemId, dealerName, productName, wholesaleYd) {
+    var WholesalePriceCalcs = $.makeArray($.WholesalePriceCalc);
+    var WholesalePriceCalcsNew = $.makeArray($.WholesalePriceCalc);
+    var data = localStorage['mohawkWholesale'];
+    var foundItem = false;
+
+    if (data != undefined && data != null && data != "") {
+        WholesalePriceCalcs = JSON.parse(data);
+
+
+        $.each(WholesalePriceCalcs, function (index,item) {
+            if (item != null) {
+                if (item.itemId == itemId) {
+                    item.dealerName = dealerName;
+                    item.productName = productName;
+                    item.wholesaleYd = wholesaleYd;
+                    if (item.wholesaleYd == '') {
+
+                        item.wholesaleYd = global_putBackValueWholeSale;
+                        global_putBackValue = '';
+                        if (item.wholesaleYd == '') {
+                            item.wholesaleYd = '0.00';
+                        }
+
+                    }
+
+                    foundItem = true;
+                }
+
+                WholesalePriceCalcsNew.push(item);
+            }
+            
+        });
+
+        if (foundItem == false) {
+            addWholesale(itemId, dealerName, productName, wholesaleYd);
+        } else {
+
+            //save to storage
+            localStorage['mohawkWholesale'] = JSON.stringify(WholesalePriceCalcsNew);
+        }
+
+    }
+}
+
+
+function saveRetail2(itemId, dealerName, productName, retailYd, retailFt) {
+    var RetailPriceCalcs = $.makeArray($.RetailPriceCalc);
+    var RetailPriceCalcsNew = $.makeArray($.RetailPriceCalc);
+    var data = localStorage['mohawkRetail'];
+    var foundItem = false;
+  
+    if (data != undefined && data != null && data != "") {
+        RetailPriceCalcs = JSON.parse(data);
+
+
+        $.each(RetailPriceCalcs, function (index,item) {
+            if (item != null) {
+                if (item.itemId == itemId) {
+                    item.dealerName = dealerName;
+                    item.productName = productName;
+                    item.wholesaleYd = retailYd;
+                    //if (item.wholesaleYd == '0.00') {
+                    //    item.wholesaleYd = global_putBackValueRetailYd ;
+                    //    global_putBackValue = '';
+                    //}
+                    foundItem = true;
+                }
+
+                RetailPriceCalcsNew.push(item);
+            }
+
+        });
+
+        if (foundItem == false) {
+            
+            addRetail(itemId, dealerName, productName, retailYd, retailFt);
+        } else {
+
+            //save to storage
+            localStorage['mohawkRetail'] = JSON.stringify(RetailPriceCalcsNew);
+        }
+
+       
+
+    }
+}
+
 
 function saveRetail(itemId, dealerName, productName, retailYd, retailFt) {
     deleteRetail(dealerName, itemId);
@@ -1772,22 +1917,22 @@ function onWholesaleCostSaveButtonClick() {
     var dealerName = global_selectDealerSelection;
     var productName = $("#wholesaleProduct_" + myArray[1]).val();
     var wholesaleYd = $("#wholesaleCost_" + myArray[1]).val();
-    if (wholesaleYd == '') {
-        wholesaleYd = "0.00";
-    }
+    //if (wholesaleYd == '') {
+    //    wholesaleYd = "0.00";
+    //}
     var itemId = myArray[1];
     if (dealerName == "") {
         alert("Please select a dealer");
         return;
     }
-    if (wholesaleYd == "") {
-        //alert("Please enter wholesale amount");
-        wholesaleYd = "0.00";
-        return;
-    }
+    //if (wholesaleYd == "") {
+    //    //alert("Please enter wholesale amount");
+    //    wholesaleYd = "0.00";
+    //    return;
+    //}
 
 
-    saveWholesale(itemId, dealerName, productName, wholesaleYd);
+    saveWholesale2(itemId, dealerName, productName, wholesaleYd);
     setDealerData(dealerName);
 
 }
@@ -1797,13 +1942,24 @@ function onRetailCostSaveButtonClick() {
     var dealerName = global_selectDealerSelection;
     var productName = $("#retailProduct_" + myArray[1]).val();
     var retailYd = $("#retailCost_" + myArray[1]).val();
+
+
     if (retailYd == '') {
-        retailYd = "0.00";
+
+        retailYd = global_putBackValueRetailYd;
+        global_putBackValueRetailYd = "";
+        if(retailYd == '') {
+            retailYd = "0.00";
+        }
     }
     
     var retailFt = $("#retailCostFt_" + myArray[1]).val();
     if (retailFt == '') {
-        retailFt = "0.00";
+        retailFt = global_putBackValueRetailFt;
+        global_putBackValueRetailFt = "";
+        if (retailFt == '') {
+            retailFt = "0.00";
+        }
     }
     var itemId = myArray[1];
     if (dealerName == "") {
@@ -1839,7 +1995,7 @@ function onRetailCostSaveButtonClick() {
     //    retailFt = (retailYd / 9).toFixed(2);
     //}
 
-    saveRetail(itemId, dealerName, productName, retailYd, retailFt);
+    saveRetail2(itemId, dealerName, productName, retailYd, retailFt);
     setDealerData(dealerName);
 
 }
@@ -2123,7 +2279,8 @@ function onAddDealerBtnClick() {
     setDealerList(newDealerName);
 
     $("#inputDealerSelection").focus();
-
+    $('#dropshade_trigger').trigger('click');
+    $("#profile_name").text(newDealerName);
 
 }
 
@@ -2181,6 +2338,31 @@ function setDealerList(dealerName) {
     }
 
     Dealers = JSON.parse(data);
+
+    if (Dealers.length < 1) {
+        dealerName = 'Default_Profile';
+        var myDealer = new $.Dealer(dealerName, '10', '10', 'true', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', 'true');
+        Dealers.push(myDealer);
+        addDealer(dealerName, '10', '10', 'true', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', 'true');
+        $("#profile_name").text(dealerName);
+        //$('#dropshade_trigger').trigger('click');// - Add delay
+
+        global_inputDealerSelection = dealerName;
+        global_selectDealerSelection = dealerName;
+    }
+
+    if (Dealers.length == 1) {
+        if (Dealers[0] != undefined) {
+            dealerName = Dealers[0].name;
+
+            $("#profile_name").text(dealerName);
+            //$('#dropshade_trigger').trigger('click');// - Add delay
+
+            global_inputDealerSelection = dealerName;
+            global_selectDealerSelection = dealerName;
+        }
+    }
+
 
     SortedDealers = Dealers.sort(function (obj1, obj2) {
         if (obj1 == null) {
@@ -2348,6 +2530,7 @@ function setDealerData(dealerName) {
         if (filteredDealer[index].profit == null || filteredDealer[index].profit == undefined) {
             filteredDealer[index].profit = "0";
         }
+
 
         $("#inputProfitMarginOrMarkup").val(filteredDealer[index].profit);
 
@@ -2721,6 +2904,9 @@ function saveDealer() {
     }
 
     var profitMargin = $("#inputProfitMarginOrMarkup").val();
+    if (profitMargin == '') {
+        profitMargin = global_tmpInputProfitMarginOrMarkup;
+    }
 
     // var carpetonly = $("#radioCarpetOnly").is(':checked').toString();
     var carpetonly = global_carpetOnly;
