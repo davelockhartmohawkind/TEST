@@ -593,17 +593,17 @@ function ClearOnInputFocus() {
         return;
     }
 
-    if (this.id.indexOf("retailCost_") == 0) {
-        global_putBackValueRetailYd = this.value;
-        this.value = '';
-        return;
-    }
+    //if (this.id.indexOf("retailCost_") == 0) {
+    //    global_putBackValueRetailYd = this.value;
+    //    this.value = '';
+    //    return;
+    //}
 
-    if (this.id.indexOf("retailCostFt_") == 0) {
-        global_putBackValueRetailFt = this.value;
-        this.value = '';
-        return;
-    }
+    //if (this.id.indexOf("retailCostFt_") == 0) {
+    //    global_putBackValueRetailFt = this.value;
+    //    this.value = '';
+    //    return;
+    //}
         
 
     global_putBackValue = this.value;
@@ -1946,20 +1946,20 @@ function onRetailCostSaveButtonClick() {
 
     if (retailYd == '') {
 
-        retailYd = global_putBackValueRetailYd;
-        global_putBackValueRetailYd = "";
-        if(retailYd == '') {
+        //retailYd = global_putBackValueRetailYd;
+        //global_putBackValueRetailYd = "";
+        //if(retailYd == '') {
             retailYd = "0.00";
-        }
+        //}
     }
     
     var retailFt = $("#retailCostFt_" + myArray[1]).val();
     if (retailFt == '') {
-        retailFt = global_putBackValueRetailFt;
-        global_putBackValueRetailFt = "";
-        if (retailFt == '') {
+        //retailFt = global_putBackValueRetailFt;
+        //global_putBackValueRetailFt = "";
+        //if (retailFt == '') {
             retailFt = "0.00";
-        }
+        //}
     }
     var itemId = myArray[1];
     if (dealerName == "") {
@@ -2187,8 +2187,8 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     $("#retailCost_" + itemId).blur(onRetailCostSaveButtonClick);
     $("#retailCostFt_" + itemId).blur(onRetailCostSaveButtonClick);
 
-    $("#retailCostFt_" + itemId).focus(ClearOnInputFocus);
-    $("#retailCost_" + itemId).focus(ClearOnInputFocus);
+    //$("#retailCostFt_" + itemId).focus(ClearOnInputFocus);
+    //$("#retailCost_" + itemId).focus(ClearOnInputFocus);
 
     $("#retailCost_" + itemId).click(onSetRetailYd);
     $("#retailCostFt_" + itemId).click(onSetRetailFt);
