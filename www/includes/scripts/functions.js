@@ -1945,65 +1945,68 @@ function onWholesaleCostSaveButtonClick() {
 }
 
 function onRetailCostSaveButtonClick() {
-    var myArray = this.id.split('_');
-    var dealerName = global_selectDealerSelection;
-    var productName = $("#retailProduct_" + myArray[1]).val();
-    var retailYd = $("#retailCost_" + myArray[1]).val();
+
+    try{
+        var myArray = this.id.split('_');
+        var dealerName = global_selectDealerSelection;
+        var productName = $("#retailProduct_" + myArray[1]).val();
+        var retailYd = $("#retailCost_" + myArray[1]).val();
 
 
-    if (retailYd == '') {
+        if (retailYd == '') {
 
-        //retailYd = global_putBackValueRetailYd;
-        //global_putBackValueRetailYd = "";
-        //if(retailYd == '') {
+            //retailYd = global_putBackValueRetailYd;
+            //global_putBackValueRetailYd = "";
+            //if(retailYd == '') {
             retailYd = "0.00";
-        //}
-    }
+            //}
+        }
     
-    var retailFt = $("#retailCostFt_" + myArray[1]).val();
-    if (retailFt == '') {
-        //retailFt = global_putBackValueRetailFt;
-        //global_putBackValueRetailFt = "";
-        //if (retailFt == '') {
+        var retailFt = $("#retailCostFt_" + myArray[1]).val();
+        if (retailFt == '') {
+            //retailFt = global_putBackValueRetailFt;
+            //global_putBackValueRetailFt = "";
+            //if (retailFt == '') {
             retailFt = "0.00";
+            //}
+        }
+        var itemId = myArray[1];
+        if (dealerName == "") {
+            alert("Please select a dealer");
+            return;
+        }
+
+        var test = $('[name=radioYdFt]:checked').val();
+
+        if (global_isRetailYd == "true") {
+            retailFt = (retailYd / 9).toFixed(2);
+        }
+        else {
+            retailYd = (retailFt * 9).toFixed(2);
+        }
+
+        //if (test == "ft") {
+        //    if (retailFt == "") {
+        //        alert("Please enter retail amount");
+        //        return;
+        //    }
+
+        //    //look at global var to see wich way to calculate
+        //    retailYd = (retailFt * 9).toFixed(2);
         //}
-    }
-    var itemId = myArray[1];
-    if (dealerName == "") {
-        alert("Please select a dealer");
-        return;
-    }
-
-    var test = $('[name=radioYdFt]:checked').val();
-
-    if (global_isRetailYd == "true") {
-        retailFt = (retailYd / 9).toFixed(2);
-    }
-    else {
-        retailYd = (retailFt * 9).toFixed(2);
-    }
-
-    //if (test == "ft") {
-    //    if (retailFt == "") {
-    //        alert("Please enter retail amount");
-    //        return;
-    //    }
-
-    //    //look at global var to see wich way to calculate
-    //    retailYd = (retailFt * 9).toFixed(2);
-    //}
-    //else {
-    //    if (retailYd == "") {
-    //        alert("Please enter retail amount");
-    //        return;
-    //    }
+        //else {
+        //    if (retailYd == "") {
+        //        alert("Please enter retail amount");
+        //        return;
+        //    }
 
 
-    //    retailFt = (retailYd / 9).toFixed(2);
-    //}
+        //    retailFt = (retailYd / 9).toFixed(2);
+        //}
 
-    saveRetail2(itemId, dealerName, productName, retailYd, retailFt);
-    setDealerData(dealerName);
+        saveRetail2(itemId, dealerName, productName, retailYd, retailFt);
+        setDealerData(dealerName);
+    } catch (err) { alert(err.message);}
 
 }
 
