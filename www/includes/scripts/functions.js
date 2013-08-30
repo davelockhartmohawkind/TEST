@@ -1017,150 +1017,156 @@ function formatInputToNumber(testnumber) {
 
 function setRetailData(dealerName) {
     //get items from storage
-    var RetailPriceCalcs = $.makeArray($.RetailPriceCalc);
-    var data = localStorage['mohawkRetail']
 
-    var retailYd = 0;
-    var retailYdWithMarkup = 0;
-    var retailFt = 0;
-    var wholesaleYd = 0;
+    try{
+        var RetailPriceCalcs = $.makeArray($.RetailPriceCalc);
+        var data = localStorage['mohawkRetail']
 
-
-    var dealerObject = getDealerObject(dealerName);
-    if (dealerObject == null) {
-        $("#tbodyRetail").empty();
-        return;
-    }
-
-    $("#headerRetailDealerName").text(dealerObject.name);
-
-
-    if (data == undefined || data == null || data == "") {
-        $("#tbodyRetail").empty();
-        addBlankRetailRow(dealerObject.isRetailYd);
-        return;
-    }
-
-    RetailPriceCalcs = JSON.parse(data);
-
-    //get matching items
-    var filteredDealer = $.grep(RetailPriceCalcs, function (item) {
-        if (item != null) {
-            return item.dealerName == dealerName;
-        }
-        return 0;
-    });
-
-    //update UI with data
-    if (filteredDealer.length < 1) {
-        $("#tbodyRetail").empty();
-        addBlankRetailRow(dealerObject.isRetailYd);
-        return;
-    }
-
-
-
-
-    var SortedDealer = filteredDealer.sort(function (obj1, obj2) {
-        if (obj1 == null) {
-            return true;
-        }
-        if (obj2 == null) {
-            return false;
-        }
-
-        if (obj1.itemId == '') {
-            return true;
-        }
-
-        if (obj2.itemId == '') {
-            return false;
-        }
-
-        return obj1.itemId > obj2.itemId;
-    });
-
-
-    $("#tbodyRetail").empty();
-    var intemnumber = 0;
-    $.each(SortedDealer, function (index, retailPriceCalc) {
         var retailYd = 0;
         var retailYdWithMarkup = 0;
         var retailFt = 0;
         var wholesaleYd = 0;
 
-        if (retailPriceCalc != null) {
-            //calculate total here
-            wholesaleYd = parseFloat(retailPriceCalc.wholesaleYd);
-            if (dealerObject.carpetonly == 'false') {
-                if (dealerObject.usecushion == "true") {
-                    //do it
-                    retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.cushion);
-                }
-                else {
-                    retailYd = parseFloat(retailYd) + parseFloat(dealerObject.cushion);
-                }
+
+        var dealerObject = getDealerObject(dealerName);
+        if (dealerObject == null) {
+            $("#tbodyRetail").empty();
+            return;
+        }
+
+        $("#headerRetailDealerName").text(dealerObject.name);
 
 
-                if (dealerObject.useinstallation == "true") {
-                    //do it
-                    retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.installation)
-                }
-                else {
-                    retailYd = parseFloat(retailYd) + parseFloat(dealerObject.installation);
-                }
+        if (data == undefined || data == null || data == "") {
+            $("#tbodyRetail").empty();
+            addBlankRetailRow(dealerObject.isRetailYd);
+            return;
+        }
 
-                if (dealerObject.usefreight == "true") {
-                    //do it
-                    retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.freight)
-                }
-                else {
-                    retailYd = parseFloat(retailYd) + parseFloat(dealerObject.freight);
-                }
+        RetailPriceCalcs = JSON.parse(data);
 
-
-                if (dealerObject.useother == "true") {
-                    //do it
-                    retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.other)
-                }
-                else {
-                    retailYd = parseFloat(retailYd) + parseFloat(dealerObject.other);
-                }
+        //get matching items
+        var filteredDealer = $.grep(RetailPriceCalcs, function (item) {
+            if (item != null) {
+                return item.dealerName == dealerName;
             }
+            return 0;
+        });
 
-            var total = 0;
-            var multiplier = 0;
-            var ydWithMarkup = retailYdWithMarkup;
-            var ydWholesale = wholesaleYd;
-
-            if (dealerObject.useprofit == "false") {
-
-                multiplier = parseInt(dealerObject.profit) / 100 + 1;
-                total = ((((ydWholesale - retailYd) / multiplier)) - ydWithMarkup).toFixed(2);
-            }
-            else {
-
-                multiplier = parseFloat((1 - (parseFloat(dealerObject.markup) / 100)).toFixed(2));
-                total = (((ydWholesale - retailYd) * multiplier) - ydWithMarkup).toFixed(2);
-            }
-
-            retailYd = total;
-
-            retailFt = (retailYd / 9).toFixed(2);
-
-            if (wholesaleYd > 0) {
-                var yardby9 = (wholesaleYd / 9).toFixed(2);
-            }
-            else {
-                yardby9 = 0.00;
-            }
-
-
-            addRetailRow(retailPriceCalc.productName, retailPriceCalc.wholesaleYd, yardby9, retailYd, retailFt, false, true, retailPriceCalc.itemId, dealerObject.isRetailYd);
+        //update UI with data
+        if (filteredDealer.length < 1) {
+            $("#tbodyRetail").empty();
+            addBlankRetailRow(dealerObject.isRetailYd);
+            return;
         }
 
 
-    });
+
+
+        var SortedDealer = filteredDealer.sort(function (obj1, obj2) {
+            if (obj1 == null) {
+                return true;
+            }
+            if (obj2 == null) {
+                return false;
+            }
+
+            if (obj1.itemId == '') {
+                return true;
+            }
+
+            if (obj2.itemId == '') {
+                return false;
+            }
+
+            return obj1.itemId > obj2.itemId;
+        });
+
+
+        $("#tbodyRetail").empty();
+        var intemnumber = 0;
+        $.each(SortedDealer, function (index, retailPriceCalc) {
+            var retailYd = 0;
+            var retailYdWithMarkup = 0;
+            var retailFt = 0;
+            var wholesaleYd = 0;
+
+            if (retailPriceCalc != null) {
+                //calculate total here
+                wholesaleYd = parseFloat(retailPriceCalc.wholesaleYd);
+                if (dealerObject.carpetonly == 'false') {
+                    if (dealerObject.usecushion == "true") {
+                        //do it
+                        retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.cushion);
+                    }
+                    else {
+                        retailYd = parseFloat(retailYd) + parseFloat(dealerObject.cushion);
+                    }
+
+
+                    if (dealerObject.useinstallation == "true") {
+                        //do it
+                        retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.installation)
+                    }
+                    else {
+                        retailYd = parseFloat(retailYd) + parseFloat(dealerObject.installation);
+                    }
+
+                    if (dealerObject.usefreight == "true") {
+                        //do it
+                        retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.freight)
+                    }
+                    else {
+                        retailYd = parseFloat(retailYd) + parseFloat(dealerObject.freight);
+                    }
+
+
+                    if (dealerObject.useother == "true") {
+                        //do it
+                        retailYdWithMarkup = retailYdWithMarkup + parseFloat(dealerObject.other)
+                    }
+                    else {
+                        retailYd = parseFloat(retailYd) + parseFloat(dealerObject.other);
+                    }
+                }
+
+                var total = 0;
+                var multiplier = 0;
+                var ydWithMarkup = retailYdWithMarkup;
+                var ydWholesale = wholesaleYd;
+
+                if (dealerObject.useprofit == "false") {
+
+                    multiplier = parseInt(dealerObject.profit) / 100 + 1;
+                    total = ((((ydWholesale - retailYd) / multiplier)) - ydWithMarkup).toFixed(2);
+                }
+                else {
+
+                    multiplier = parseFloat((1 - (parseFloat(dealerObject.markup) / 100)).toFixed(2));
+                    total = (((ydWholesale - retailYd) * multiplier) - ydWithMarkup).toFixed(2);
+                }
+
+                retailYd = total;
+
+                retailFt = (retailYd / 9).toFixed(2);
+
+                if (wholesaleYd > 0) {
+                    var yardby9 = (wholesaleYd / 9).toFixed(2);
+                }
+                else {
+                    yardby9 = 0.00;
+                }
+
+
+                addRetailRow(retailPriceCalc.productName, retailPriceCalc.wholesaleYd, yardby9, retailYd, retailFt, false, true, retailPriceCalc.itemId, dealerObject.isRetailYd);
+            }
+
+
+        });
+
+    } catch (err) {
+        alert(err.message);
+    }
     //add a blank row
     //addBlankRetailRow(dealerObject.isRetailYd);
     //$("#tableRetail").table("refresh");
