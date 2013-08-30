@@ -1950,7 +1950,7 @@ function onRetailCostSaveButtonClick() {
         var myArray = this.id.split('_');
         var dealerName = global_selectDealerSelection;
         var productName = $("#retailProduct_" + myArray[1]).val();
-        var retailYd = $("#retailCost_" + myArray[1]).val();
+        var retailYd = parseFloat($("#retailCost_" + myArray[1]).val());
 
 
         if (retailYd == '') {
@@ -1967,7 +1967,7 @@ function onRetailCostSaveButtonClick() {
             //retailFt = global_putBackValueRetailFt;
             //global_putBackValueRetailFt = "";
             //if (retailFt == '') {
-            retailFt = "0.00";
+            retailFt = 0.00;
             //}
         }
         var itemId = myArray[1];
@@ -1979,10 +1979,10 @@ function onRetailCostSaveButtonClick() {
         var test = $('[name=radioYdFt]:checked').val();
 
         if (global_isRetailYd == "true") {
-            retailFt = (retailYd / 9).toFixed(2);
+            retailFt = (retailYd / 9);
         }
         else {
-            retailYd = (retailFt * 9).toFixed(2);
+            retailYd = (retailFt * 9);
         }
 
         //if (test == "ft") {
@@ -2004,7 +2004,7 @@ function onRetailCostSaveButtonClick() {
         //    retailFt = (retailYd / 9).toFixed(2);
         //}
 
-        saveRetail2(itemId, dealerName, productName, retailYd, retailFt);
+        saveRetail2(itemId, dealerName, productName, parseFloat( retailYd).toFixed(2), parseFloat(retailFt).toFixed(2));
         setDealerData(dealerName);
     } catch (err) { alert(err.message);}
 
