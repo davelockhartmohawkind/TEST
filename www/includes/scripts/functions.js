@@ -1282,7 +1282,7 @@ function setWholesaleData(dealerName) {
             var total = 0;
             var multiplier = 0;
             var ydWithMarkup = retailYdWithMarkup;
-            var ydWholesale = parseFloat(wholesaleYd);
+            var ydWholesale = parseFloat(wholesaleYd).toFixed(2);
             if (dealerObject.useprofit == "false") {
 
                 multiplier = parseInt(dealerObject.profit) / 100 + 1;
