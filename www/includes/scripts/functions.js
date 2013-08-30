@@ -2035,7 +2035,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                     	<h6 class="mobileonly mth">Carpet Cost <span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + ' <div class="wrapper_nornd bglight">';
     mytable = mytable + '                                           <h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="number" id="wholesaleCost_' + itemId + '" name="carpetcost_1" class="thinput left" value="' + wholesaleAmount + '" />';
+    mytable = mytable + '                                            <input type="tel" id="wholesaleCost_' + itemId + '" name="carpetcost_1" class="thinput left" value="' + wholesaleAmount + '" />';
     mytable = mytable + '                                             <div class="clear"></div>';
     mytable = mytable + '                                         </div>';
 
@@ -2095,9 +2095,9 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     $("#wholesaleProduct_" + itemId).blur(onWholesaleCostSaveButtonClick);
     $("#tableWholesale").trigger("create");
 
-    if (setFocus == true) {
-        $("#wholesaleProduct_" + itemId).focus();
-    }
+    //if (setFocus == true) {
+    //    $("#wholesaleProduct_" + itemId).focus();
+    //}
 
 }
 
@@ -2135,7 +2135,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     mytable = mytable + '                                    <h6 class="mobileonly mth">Retail Price <span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + '                                       <div class="wrapper_nornd bglight">';
     mytable = mytable + '                                           <h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="number" id="retailCost_' + itemId + '" name="retailCost_" class="thinput left" value="' + retailAmountYd + '" />';
+    mytable = mytable + '                                            <input type="tel" id="retailCost_' + itemId + '" name="retailCost_" class="thinput left" value="' + retailAmountYd + '" />';
     mytable = mytable + '                                            <div class="clear"></div>';
     mytable = mytable + '                                        </div>';
 
@@ -2145,7 +2145,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     mytable = mytable + '                                	<div class="cellpad">';
     mytable = mytable + '                                    	<h6 class="mobileonly mth"><span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + '                                        <div class="wrapper_nornd bglight"><h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="number" id="retailCostFt_' + itemId + '" name="sqft_1" class="thinput left" value="' + retailAmountFt + '" />';
+    mytable = mytable + '                                            <input type="tel" id="retailCostFt_' + itemId + '" name="sqft_1" class="thinput left" value="' + retailAmountFt + '" />';
     mytable = mytable + '                                            <div class="clear"></div>';
     mytable = mytable + '                                        </div>';
 
@@ -2198,9 +2198,9 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     $("#btnretailCostSave_" + itemId).click(onRetailCostSaveButtonClick);
 
     $("#tableRetail").trigger("create");
-    if (setFocus == true) {
-        $("#retailProduct_" + itemId).focus();
-    }
+    //if (setFocus == true) {
+    //    $("#retailProduct_" + itemId).focus();
+    //}
 
 
 }
