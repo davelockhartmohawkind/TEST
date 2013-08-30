@@ -1148,8 +1148,8 @@ function setRetailData(dealerName) {
 
             retailFt = (retailYd / 9).toFixed(2);
 
-            if (retailPriceCalc.wholesaleYd > 0) {
-                var yardby9 = (retailPriceCalc.wholesaleYd / 9).toFixed(2);
+            if (wholesaleYd > 0) {
+                var yardby9 = (wholesaleYd / 9).toFixed(2);
             }
             else {
                 yardby9 = 0.00;
@@ -1242,7 +1242,7 @@ function setWholesaleData(dealerName) {
 
         if (wholesalePriceCalc != null) {
             //calculate total here
-            wholesaleYd = parseFloat(wholesalePriceCalc.wholesaleYd).toFixed(2);
+            wholesaleYd = parseFloat(wholesalePriceCalc.wholesaleYd);
             if (dealerObject.carpetonly == 'false') {
                 if (dealerObject.usecushion == "true") {
                     //do it
@@ -1282,7 +1282,8 @@ function setWholesaleData(dealerName) {
             var total = 0;
             var multiplier = 0;
             var ydWithMarkup = retailYdWithMarkup;
-            var ydWholesale = parseFloat(wholesaleYd).toFixed(2);
+           // var ydWholesale  = parseFloat(wholesaleYd);
+            var ydWholesale = wholesaleYd;
             if (dealerObject.useprofit == "false") {
 
                 multiplier = parseInt(dealerObject.profit) / 100 + 1;
