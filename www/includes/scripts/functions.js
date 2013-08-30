@@ -2194,8 +2194,8 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
 
     $("#btnRetailCostDelete_" + itemId).click(onRetailCostDeleteButtonClick);
 
-    $("#retailCost_" + itemId).blur(onRetailCostSaveButtonClick);
-    $("#retailCostFt_" + itemId).blur(onRetailCostSaveButtonClick);
+    //$("#retailCost_" + itemId).blur(onRetailCostSaveButtonClick);
+    //$("#retailCostFt_" + itemId).blur(onRetailCostSaveButtonClick);
 
     //$("#retailCostFt_" + itemId).focus(ClearOnInputFocus);
     //$("#retailCost_" + itemId).focus(ClearOnInputFocus);
@@ -2204,7 +2204,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     $("#retailCostFt_" + itemId).click(onSetRetailFt);
 
 
-    $("#retailProduct_" + itemId).blur(onRetailCostSaveButtonClick);
+    //$("#retailProduct_" + itemId).blur(onRetailCostSaveButtonClick);
     $("#btnretailCostSave_" + itemId).click(onRetailCostSaveButtonClick);
 
     $("#tableRetail").trigger("create");
