@@ -42,6 +42,7 @@
 		margin-bottom: 20px; }
 	input[type="text"], 
 	input[type="number"], 
+	input[type="tel"], 
 	input[type="password"],
 	input[type="email"],
 	textarea, 
@@ -61,6 +62,7 @@
 		padding: 0; }
 	input[type="text"]:focus, 
 	input[type="number"]:focus, 
+	nput[type="tel"]:focus, 
 	input[type="password"]:focus,
 	input[type="email"]:focus, 
 	textarea:focus {
@@ -87,6 +89,7 @@
 		color: #444; }
 	
 	input[type="text"].mput,  
+	input[type="tel"].mput, 
 	input[type="number"].mput  {
 		border: 1px solid #db0000;
 		padding: 6px 6px;
@@ -103,6 +106,7 @@
 		-webkit-appearance: none; }
 		
 	input[type="text"]:focus.mput,
+	input[type="tel"]:focus.mput,
 	input[type="number"]:focus.mput {
 		border: 1px solid #FFFFFF;
  		color: #444;
@@ -112,6 +116,7 @@
 		box-shadow:  0 0 3px rgba(0,0,0,.2); }
 		
 	input[type="text"].fatinput,
+	input[type="tel"].fatinput,
 	input[type="number"].fatinput {
 		border: none;
 		padding: 0px 0px;
@@ -134,6 +139,7 @@
 		box-shadow:  0 0 0px rgba(0,0,0,0); }
 		
 	input[type="text"]:focus.fatinput,
+	input[type="tel"]:focus.fatinput,
 	input[type="number"]:focus.fatinput {
 		border: none;
  		color: #444;
@@ -144,6 +150,7 @@
 		
 		
 	input[type="text"].thinput,
+	input[type="tel"].thinput,
 	input[type="number"].thinput {
 		border: none;
 		padding: 0px 0px 0px 2px;
@@ -166,6 +173,7 @@
 		box-shadow:  0 0 0px rgba(0,0,0,0); }
 		
 	input[type="text"]:focus.thinput,
+	input[type="tel"]:focus.thinput,
 	input[type="number"]:focus.thinput {
 		border: none;
  		color: #444;
@@ -197,6 +205,7 @@
 		box-shadow:  0 0 0px rgba(0,0,0,0); }
 		
 	input[type="text"]:focus.thinput2,
+	input[type="tel"]:focus.thinput2,
 	input[type="number"]:focus.thinput2 {
 		border: none;
  		color: #444;
@@ -728,6 +737,7 @@ background-color:#c50202;
 .fit30 { margin-bottom:0px; }
 
 input[type="text"].namedit,
+input[type="tel"].namedit,
 input[type="number"].namedit {
 		border: 1px solid #FFFFFF;
 		padding: 4px 4px;
@@ -747,6 +757,7 @@ input[type="number"].namedit {
 		-webkit-appearance: none; }
 		
 	input[type="text"]:focus.namedit,
+	nput[type="tel"]:focus.namedit,
 	input[type="number"]:focus.namedit {
 		border: 1px solid #FFFFFF;
  		color: #444;
@@ -1645,6 +1656,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 	.item_name { display:block; width:443px; }
 	.namedit_wrapper { width:443px; display:none; position:absolute; top:0px; left:0px; z-index:1300; }
 	input[type="text"].namedit, 
+	input[type="tel"].namedit,
 	input[type="number"].namedit {
 		margin: 0;
 		margin-left:2px;
@@ -1653,6 +1665,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 	}
 	
 	input[type="text"].fatinput, 
+	input[type="tel"].fatinput, 
 	input[type="number"].fatinput {
 		width: 64px !important;
 		min-width:64px;
@@ -1713,12 +1726,14 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 	.list_title .left  { float: none; }
 	
 	input[type="text"].fatinput, 
+	input[type="tel"].fatinput, 
 	input[type="number"].fatinput {
 		width: 64px !important;
 		min-width:64px;
 	}
 	
 	input[type="text"].mput, 
+	input[type="tel"].mput, 
 	input[type="number"].mput {
 		border: 1px solid #db0000;
 		padding: 6px 6px;
@@ -1735,6 +1750,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 		-webkit-appearance: none; }
 		
 	input[type="text"]:focus.mput, 
+	input[type="tel"]:focus.mput, 
 	input[type="number"]:focus.mput {
 		border: 1px solid #FFFFFF;
  		color: #444;
@@ -1767,7 +1783,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 	 }
 	 
 	.namedit_wrapper { width:134px !important; display:none; position:absolute; top:0px; left:0px; z-index:1300; }
-	input[type="text"].namedit, input[type="number"].namedit {
+	input[type="text"].namedit, input[type="tel"].namedit, input[type="number"].namedit {
 		border: 1px solid #FFFFFF;
 		padding: 4px 4px;
 		padding-left:10px;
@@ -1906,7 +1922,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 	.clearx { background: #d2d2d3 url('../../images/ui/clearx_pad.png') no-repeat right center !important; padding: 8px 38px 8px 21px !important; }
 	
 	
-	.underhalfed input[type="text"].thinput, .underhalfed input[type="number"].thinput {
+	.underhalfed input[type="text"].thinput,.underhalfed input[type="tel"].thinput, .underhalfed input[type="number"].thinput {
 		width:50px !important;
 	}
 	
@@ -1950,7 +1966,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 	 }
 	 
 	.namedit_wrapper { width:234px !important; display:none; position:absolute; top:0px; left:0px; z-index:1300; }
-	input[type="text"].namedit, input[type="number"].namedit {
+	input[type="text"].namedit,input[type="tel"].namedit, input[type="number"].namedit {
 		border: 1px solid #FFFFFF;
 		padding: 4px 4px;
 		padding-left:10px;
@@ -1968,7 +1984,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 	#masthead { width:310px; margin:auto; margin-top:90px; text-align:center; }
 	.logo_msthd {  float:left; width:107px; height:28px; margin-right:10px; }
 	
-	input[type="text"].fatinput, input[type="number"].fatinput {
+	input[type="text"].fatinput, input[type="tel"].fatinput, input[type="number"].fatinput {
 		width:94px !important; }
 		
 	span.rad {
