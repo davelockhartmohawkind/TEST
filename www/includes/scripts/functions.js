@@ -509,10 +509,12 @@ function onRetailClick() {
   
 function onSetRetailYd() {
     global_isRetailYd = "true";
+   
 }
 
 function onSetRetailFt() {
-  global_isRetailYd = "false";
+    global_isRetailYd = "false";
+  
 }
 
 
@@ -593,17 +595,19 @@ function ClearOnInputFocus() {
         return;
     }
 
-    //if (this.id.indexOf("retailCost_") == 0) {
-    //    global_putBackValueRetailYd = this.value;
-    //    this.value = '';
-    //    return;
-    //}
+    if (this.id.indexOf("retailCost_") == 0) {
+        global_putBackValueRetailYd = this.value;
+        this.value = '';
+        onSetRetailYd();
+        return;
+    }
 
-    //if (this.id.indexOf("retailCostFt_") == 0) {
-    //    global_putBackValueRetailFt = this.value;
-    //    this.value = '';
-    //    return;
-    //}
+    if (this.id.indexOf("retailCostFt_") == 0) {
+        global_putBackValueRetailFt = this.value;
+        this.value = '';
+        onSetRetailFt();
+        return;
+    }
         
 
     global_putBackValue = this.value;
@@ -1326,6 +1330,7 @@ function saveWholesale(itemId, dealerName, productName, wholesaleYd) {
 function saveWholesale2(itemId, dealerName, productName, wholesaleYd) {
     var WholesalePriceCalcs = $.makeArray($.WholesalePriceCalc);
     var WholesalePriceCalcsNew = $.makeArray($.WholesalePriceCalc);
+
     var data = localStorage['mohawkWholesale'];
     var foundItem = false;
 
@@ -1333,7 +1338,7 @@ function saveWholesale2(itemId, dealerName, productName, wholesaleYd) {
         WholesalePriceCalcs = JSON.parse(data);
 
 
-        $.each(WholesalePriceCalcs, function (index,item) {
+        $.each(WholesalePriceCalcs, function (index, item) {
             if (item != null) {
                 if (item.itemId == itemId) {
                     item.dealerName = dealerName;
@@ -1354,17 +1359,21 @@ function saveWholesale2(itemId, dealerName, productName, wholesaleYd) {
 
                 WholesalePriceCalcsNew.push(item);
             }
-            
+
         });
 
         if (foundItem == false) {
             addWholesale(itemId, dealerName, productName, wholesaleYd);
-        } else {
+        }
+        else {
 
             //save to storage
             localStorage['mohawkWholesale'] = JSON.stringify(WholesalePriceCalcsNew);
         }
 
+    }
+    else {
+        addWholesale(itemId, dealerName, productName, wholesaleYd);
     }
 }
 
@@ -1379,7 +1388,7 @@ function saveRetail2(itemId, dealerName, productName, retailYd, retailFt) {
         RetailPriceCalcs = JSON.parse(data);
 
 
-        $.each(RetailPriceCalcs, function (index,item) {
+        $.each(RetailPriceCalcs, function (index, item) {
             if (item != null) {
                 if (item.itemId == itemId) {
                     item.dealerName = dealerName;
@@ -1398,7 +1407,7 @@ function saveRetail2(itemId, dealerName, productName, retailYd, retailFt) {
         });
 
         if (foundItem == false) {
-            
+
             addRetail(itemId, dealerName, productName, retailYd, retailFt);
         } else {
 
@@ -1406,8 +1415,11 @@ function saveRetail2(itemId, dealerName, productName, retailYd, retailFt) {
             localStorage['mohawkRetail'] = JSON.stringify(RetailPriceCalcsNew);
         }
 
-       
 
+
+    }
+    else {
+        addRetail(itemId, dealerName, productName, retailYd, retailFt);
     }
 }
 
@@ -1923,7 +1935,24 @@ function onWholesaleCostSaveButtonClick() {
     var myArray = this.id.split('_');
     var dealerName = global_selectDealerSelection;
     var productName = $("#wholesaleProduct_" + myArray[1]).val();
-    var wholesaleYd = $("#wholesaleCost_" + myArray[1]).val();
+    var wholesaleYdString = $("#wholesaleCost_" + myArray[1]).val();
+    var wholesaleYd = 0.00; //$("#wholesaleCost_" + myArray[1]).val();
+
+    if (wholesaleYdString == '') {
+        wholesaleYdString = global_putBackValueWholeSale;
+        if (wholesaleYdString == '') {
+            wholesaleYdString = "0.00";
+        }
+
+      
+    }
+
+    wholesaleYd = parseFloat(wholesaleYdString);
+
+    if (productName == '') {
+        productName = global_putBackValue;
+        global_putBackValue = '';
+    }
     //if (wholesaleYd == '') {
     //    wholesaleYd = "0.00";
     //}
@@ -1950,26 +1979,42 @@ function onRetailCostSaveButtonClick() {
         var myArray = this.id.split('_');
         var dealerName = global_selectDealerSelection;
         var productName = $("#retailProduct_" + myArray[1]).val();
-        var retailYd = parseFloat($("#retailCost_" + myArray[1]).val());
+        var retailYdString = $("#retailCost_" + myArray[1]).val();
+        var retailYd = 0.00;
+
+        if (retailYdString == '') {
+            retailYdString = global_putBackValueRetailYd
+            if (retailYdString == '') {
+                retailYdString = "0.00";
+            }
 
 
-        if (retailYd == '') {
-
-            //retailYd = global_putBackValueRetailYd;
-            //global_putBackValueRetailYd = "";
-            //if(retailYd == '') {
-            retailYd = "0.00";
-            //}
         }
+
+        retailYd = parseFloat(retailYdString);
+
+        //if (retailYd == '') {
+
+        //    //retailYd = global_putBackValueRetailYd;
+        //    //global_putBackValueRetailYd = "";
+        //    //if(retailYd == '') {
+        //    retailYd = 0.00;
+        //    //}
+        //}
     
-        var retailFt = $("#retailCostFt_" + myArray[1]).val();
-        if (retailFt == '') {
-            //retailFt = global_putBackValueRetailFt;
-            //global_putBackValueRetailFt = "";
-            //if (retailFt == '') {
-            retailFt = 0.00;
-            //}
+        var retailFtString = $("#retailCostFt_" + myArray[1]).val();
+        var retailFt = 0.00;
+
+        if (retailFtString == '') {
+            retailFtString = global_putBackValueRetailFt;
+            if (retailFtString == '') {
+                retailFtString = "0.00";
+            }
+
+
         }
+        retailFt = parseFloat(retailFtString);
+
         var itemId = myArray[1];
         if (dealerName == "") {
             alert("Please select a dealer");
@@ -2194,17 +2239,17 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
 
     $("#btnRetailCostDelete_" + itemId).click(onRetailCostDeleteButtonClick);
 
-    //$("#retailCost_" + itemId).blur(onRetailCostSaveButtonClick);
-    //$("#retailCostFt_" + itemId).blur(onRetailCostSaveButtonClick);
+    $("#retailCost_" + itemId).blur(onRetailCostSaveButtonClick);
+    $("#retailCostFt_" + itemId).blur(onRetailCostSaveButtonClick);
 
-    //$("#retailCostFt_" + itemId).focus(ClearOnInputFocus);
-    //$("#retailCost_" + itemId).focus(ClearOnInputFocus);
+    $("#retailCostFt_" + itemId).focus(ClearOnInputFocus);
+    $("#retailCost_" + itemId).focus(ClearOnInputFocus);
 
-    $("#retailCost_" + itemId).click(onSetRetailYd);
-    $("#retailCostFt_" + itemId).click(onSetRetailFt);
+    //$("#retailCost_" + itemId).click(onSetRetailYd);
+    //$("#retailCostFt_" + itemId).click(onSetRetailFt);
 
 
-    //$("#retailProduct_" + itemId).blur(onRetailCostSaveButtonClick);
+    $("#retailProduct_" + itemId).blur(onRetailCostSaveButtonClick);
     $("#btnretailCostSave_" + itemId).click(onRetailCostSaveButtonClick);
 
     $("#tableRetail").trigger("create");
@@ -2344,6 +2389,17 @@ function setDealerList(dealerName) {
     //$('#inputBtnAdd').removeClass("ui-hidden-accessible");
 
     if (data == undefined || data == null || data == "") {
+        dealerName = 'Default_Profile';
+        var myDealer = new $.Dealer(dealerName, '10', '10', 'true', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', 'true');
+        Dealers.push(myDealer);
+        addDealer(dealerName, '10', '10', 'true', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', '0.00', 'false', 'true');
+        $("#profile_name").text(dealerName);
+        //$('#dropshade_trigger').trigger('click');// - Add delay
+
+        global_inputDealerSelection = dealerName;
+        global_selectDealerSelection = dealerName;
+
+        setDealerData(dealerName);
         return null;
     }
 
