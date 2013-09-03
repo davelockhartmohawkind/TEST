@@ -889,20 +889,20 @@ var clearProduct = function () {
 function clearAllProducts() {
     // Remove All Products from calculation results
   
-    //var x = confirm('Are you sure you would like to clear all products?', 'Caution');
-    $("#dialog-confirm").dialog({
-        resizable: false,
-        height: 140,
-        modal: true,
-        buttons: {
-            "Delete all items": function () {
-                $(this).dialog("close");
-            },
-            Cancel: function () {
-                $(this).dialog("close");
-            }
-        }
-    });
+    var x = confirm('Are you sure you would like to clear all products?', 'Caution');
+    //$("#dialog-confirm").dialog({
+    //    resizable: false,
+    //    height: 140,
+    //    modal: true,
+    //    buttons: {
+    //        "Delete all items": function () {
+    //            $(this).dialog("close");
+    //        },
+    //        Cancel: function () {
+    //            $(this).dialog("close");
+    //        }
+    //    }
+    //});
 
     if (x == true) {
        
@@ -1724,6 +1724,7 @@ function deleteRetail(dealerName, itemId) {
 
         //save to storage
         localStorage['mohawkRetail'] = JSON.stringify(filteredDealer);
+        $("#tbodyRetail").empty();
     }
 }
 
@@ -1989,6 +1990,10 @@ function onRetailCostSaveButtonClick() {
         var retailYdString = $("#retailCost_" + myArray[1]).val();
         var retailYd = 0.00;
 
+        if(retailYdString == 'undefined') {
+            retailYdString = '';
+        }
+
         if (retailYdString == '') {
             retailYdString = global_putBackValueRetailYd
             if (retailYdString == '') {
@@ -2011,6 +2016,10 @@ function onRetailCostSaveButtonClick() {
     
         var retailFtString = $("#retailCostFt_" + myArray[1]).val();
         var retailFt = 0.00;
+
+        if (retailFtString == 'undefined') {
+            retailYdString = '';
+        }
 
         if (retailFtString == '') {
             retailFtString = global_putBackValueRetailFt;
@@ -2056,9 +2065,11 @@ function onRetailCostSaveButtonClick() {
         //    retailFt = (retailYd / 9).toFixed(2);
         //}
 
-        saveRetail2(itemId, dealerName, productName, parseFloat( retailYd).toFixed(2), parseFloat(retailFt).toFixed(2));
+        saveRetail2(itemId, dealerName, productName, retailYd, retailFt);
         setDealerData(dealerName);
-    } catch (err) { alert(err.message);}
+    } catch (err) {
+        alert(err.message);
+    }
 
 }
 
@@ -2073,13 +2084,14 @@ function addBlankRetailRow(RetailYd) {
 
 function toMoneyString(numberValue) {
     var test = jQuery.type(numberValue);
-    if (numberValue == "") {
-        numberValue = "0";
-    }
-
+    
     if (test == 'number') {
 
        return numberValue.toFixed(2);
+    }
+
+    if (numberValue == "") {
+        numberValue = "0";
     }
     return parseFloat(numberValue).toFixed(2);
 
