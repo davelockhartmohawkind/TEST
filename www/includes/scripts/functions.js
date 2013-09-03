@@ -840,6 +840,11 @@ var deleteProfile = function (target_profile, dealerName) {
     // alert('Delete Profile Function - deleteProfile() - is currently empty. ');
     // Check if more than one profile exists and the value is not 'default', if not then alert no delete
 
+    if (dealerName == 'Default_Profile') {
+        alert("Can not delete profile named Default_Profile");
+        return;
+    }
+
     var index = parseInt(target_profile);
 
         var x = confirm('Are you sure you would like to delete this profile?','Caution');
@@ -1087,7 +1092,7 @@ function setRetailData(dealerName) {
         });
 
 
-        $("#tbodyRetail").empty();
+       // $("#tbodyRetail").empty();
         var intemnumber = 0;
         $.each(SortedDealer, function (index, retailPriceCalc) {
             var retailYd = 0;
@@ -1242,7 +1247,7 @@ function setWholesaleData(dealerName) {
     });
 
 
-    $("#tbodyWholesale").empty();
+   // $("#tbodyWholesale").empty();
     var intemnumber = 0;
     $.each(SortedDealer, function (index, wholesalePriceCalc) {
         var retailYd = 0;
@@ -1471,6 +1476,7 @@ function deleteWholesale(dealerName, itemId) {
 
         //save to storage
         localStorage['mohawkWholesale'] = JSON.stringify(filteredDealer);
+        $("#tbodyWholesale").empty();
     }
 }
 
@@ -1669,6 +1675,7 @@ function deleteWholesaleByDealerName(dealerName) {
 
         //save to storage
         localStorage['mohawkWholesale'] = JSON.stringify(filteredDealer);
+        $("#tbodyWholesale").empty();
     }
 }
 
@@ -2063,12 +2070,45 @@ function addBlankRetailRow(RetailYd) {
     addRetailRow('', '', '', '0', '0', true, false, '', RetailYd);
 }
 
+
+function toMoneyString(numberValue) {
+    var test = jQuery.type(numberValue);
+    if (numberValue == "") {
+        numberValue = "0";
+    }
+
+    if (test == 'number') {
+
+       return numberValue.toFixed(2);
+    }
+    return parseFloat(numberValue).toFixed(2);
+
+}
+
 function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolIncludeSave, boolIncludeDelete, itemId) {
 
     var setFocus = false;
     if (itemId == null || itemId == "") {
         itemId = (new Date()).getTime();
         setFocus = true;
+    }
+
+    
+
+    //if row already exist then just set the values;
+    if ($("#wholesaleProduct_" + itemId).length > 0) {
+
+        $("#wholesaleCost_" + itemId).val(toMoneyString(wholesaleAmount));
+
+        $("#wholesaleProduct_" + itemId).val(wholesaleProduct);
+
+        $("#retailcostcal_1" + itemId).html(toMoneyString(retailYd));
+
+        $("#sqftcal_1" + itemId).html(toMoneyString(retailFt));
+        $("#tableWholesale").trigger("create");
+   
+
+        return;
     }
 
     // var rowText = $("#WholesaleToRetailRow").html();
@@ -2090,7 +2130,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                     	<h6 class="mobileonly mth">Carpet Cost <span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + ' <div class="wrapper_nornd bglight">';
     mytable = mytable + '                                           <h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="tel" id="wholesaleCost_' + itemId + '" name="carpetcost_1" class="thinput left" value="' + wholesaleAmount + '" />';
+    mytable = mytable + '                                            <input type="tel" id="wholesaleCost_' + itemId + '" name="carpetcost_1" class="thinput left" value="' + toMoneyString( wholesaleAmount) + '" />';
     mytable = mytable + '                                             <div class="clear"></div>';
     mytable = mytable + '                                         </div>';
 
@@ -2106,7 +2146,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                     	<h6 class="mobileonly mth">Retail Price <span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + '                                         <div class="wrapper_nornd bglight">';
     mytable = mytable + ' <h6 style="text-align:left;">';
-    mytable = mytable + '                                             <span id="retailcostcal_1" class="calculation">' + retailYd + '</span';
+    mytable = mytable + '                                             <span id="retailcostcal_1' + itemId + '" class="calculation">' + toMoneyString(retailYd) + '</span';
     mytable = mytable + '                                             </h6>';
     mytable = mytable + '                                         </div>';
 
@@ -2117,7 +2157,7 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
     mytable = mytable + '                                		<h6 class="mobileonly mth"><span class="sqyd">sq. ft.</span></h6>';
     mytable = mytable + '                                         <div class="right_wrapper_rnd bglight">';
     mytable = mytable + '                                             <h6 style="text-align:left;">';
-    mytable = mytable + '                                             <span id="sqftcal_1" class="calculation">' + retailFt + '</span>';
+    mytable = mytable + '                                             <span id="sqftcal_1' + itemId + '" class="calculation">' + toMoneyString(retailFt) + '</span>';
     mytable = mytable + '                                             </h6>';
     mytable = mytable + '                                         </div>';
 
@@ -2172,10 +2212,26 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     boolIncludeSave = true;
 
 
+    //if row already exist then just set the values;
+    if ($("#retailProduct_" + itemId).length > 0) {
+
+        $("#retailCost_" + itemId).val(toMoneyString(retailAmountYd));
+
+        $("#retailProduct_" + itemId).val(retailProduct);
+
+        $("#retailCostFt_" + itemId).val(toMoneyString(retailAmountFt));
+
+        $("#wholesaleYd" + itemId).text(toMoneyString(wholesaleYd));
+
+        $("#tableRetail").trigger("create");
+        return;
+    }
+
+
 
     //var mytable = '<div class="datarow spaced" id="WholesaleToRetailRow" style="display:none">';
     var mytable = ' <div class="clear" ></div>';
-    mytable = mytable + '                         <div class="round_wrapper2 bgmed">';
+    mytable = mytable + '                       <div class="round_wrapper2 bgmed">';
 
     mytable = mytable + '                            	<div class="datacell1">';
     mytable = mytable + '                                	<div class="cellpad">';
@@ -2190,7 +2246,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     mytable = mytable + '                                    <h6 class="mobileonly mth">Retail Price <span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + '                                       <div class="wrapper_nornd bglight">';
     mytable = mytable + '                                           <h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="tel" id="retailCost_' + itemId + '" name="retailCost_" class="thinput left" value="' + retailAmountYd + '" />';
+    mytable = mytable + '                                            <input type="tel" id="retailCost_' + itemId + '" name="retailCost_" class="thinput left" value="' + toMoneyString(retailAmountYd) + '" />';
     mytable = mytable + '                                            <div class="clear"></div>';
     mytable = mytable + '                                        </div>';
 
@@ -2200,7 +2256,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     mytable = mytable + '                                	<div class="cellpad">';
     mytable = mytable + '                                    	<h6 class="mobileonly mth"><span class="sqyd">sq. yd.</span></h6>';
     mytable = mytable + '                                        <div class="wrapper_nornd bglight"><h6 style="text-align:left;" class="left">$</h6>';
-    mytable = mytable + '                                            <input type="tel" id="retailCostFt_' + itemId + '" name="sqft_1" class="thinput left" value="' + retailAmountFt + '" />';
+    mytable = mytable + '                                            <input type="tel" id="retailCostFt_' + itemId + '" name="sqft_1" class="thinput left" value="' + toMoneyString(retailAmountFt) + '" />';
     mytable = mytable + '                                            <div class="clear"></div>';
     mytable = mytable + '                                        </div>';
 
@@ -2216,7 +2272,7 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     mytable = mytable + '                                		<h6 class="mobileonly mth">Carpet Cost <span class="sqyd">sq. ft.</span></h6>';
     mytable = mytable + '                                        <div class="right_wrapper_rnd bglight">';
     mytable = mytable + '                                            <h6 style="text-align:left;">';
-    mytable = mytable + '                                            <span id="Span2" class="calculation">' + wholesaleYd + '</span>';
+    mytable = mytable + '                                            <span id="wholesaleYd' + itemId + '" class="calculation">' + toMoneyString( wholesaleYd) + '</span>';
     mytable = mytable + '                                            </h6>';
     mytable = mytable + '                                        </div>';
 
@@ -2296,6 +2352,7 @@ function onWholesaleCostDeleteButtonClick() {
     var itemId = myArray[1];
 
     deleteWholesale(dealerName, itemId);
+    
     setDealerData(dealerName);
 }
 
@@ -2312,7 +2369,8 @@ function onRetailCostDeleteButtonClick() {
 
 function onSelectDealer() {
     $("#inputDealerSelection").val($("#selectDealerSelection :selected").text());
-
+    $("#tbodyWholesale").empty();
+    $("#tbodyRetail").empty();
     setDealerData($("#selectDealerSelection :selected").text());
 
 }
@@ -2399,11 +2457,22 @@ function setDealerList(dealerName) {
         global_inputDealerSelection = dealerName;
         global_selectDealerSelection = dealerName;
 
+        $("#tbodyWholesale").empty();
+        $("#tbodyRetail").empty();
+
         setDealerData(dealerName);
         return null;
     }
 
     Dealers = JSON.parse(data);
+
+    //get rid of null entries
+    Dealers = $.grep(Dealers, function (item) {
+        if (item != null) {
+            return item != null;
+        }
+        return 0;
+    });
 
     if (Dealers.length < 1) {
         dealerName = 'Default_Profile';
@@ -2416,6 +2485,9 @@ function setDealerList(dealerName) {
         global_inputDealerSelection = dealerName;
         global_selectDealerSelection = dealerName;
     }
+
+
+
 
     if (Dealers.length == 1) {
         if (Dealers[0] != undefined) {
@@ -2533,7 +2605,8 @@ function setDealerList(dealerName) {
     $("#contentScroll").fadeIn('fast');
 
 
-
+    $("#tbodyWholesale").empty();
+    $("#tbodyRetail").empty();
 
     setDealerData(dealerName);
 }
@@ -3041,6 +3114,8 @@ function onDeleteDealerClick() {
     var other = $("#inputOther").val();
     var useOther = $("#checkboxOther").is(':checked').toString();;
     var isRetailYd = $("#radioYdFt1").is(':checked').toString();
+
+    
 
     deleteDealer(dealerName, profitMargin, markup, useProfit, carpetonly, cushion, useCushion, installation, useInstallation, freight, useFreight, other, useOther, isRetailYd);
     clearAll();
