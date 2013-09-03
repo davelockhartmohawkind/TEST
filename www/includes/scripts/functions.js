@@ -307,6 +307,10 @@ $(document).ready(function () {
     $("#products_remove").click(clearAllProducts);
     $("#product_add").click(addProduct)
 
+    $("#calculator").submit(function () {
+        return false;
+    });
+
     setDealerList('');
 
     /* Tabs Activiation
@@ -906,8 +910,8 @@ function clearAllProducts() {
 
     if (x == true) {
        
-        //deleteWholesaleByDealerName(global_selectDealerSelection);
-        //deleteRetailByDealerName(global_selectDealerSelection);
+        deleteWholesaleByDealerName(global_selectDealerSelection);
+        deleteRetailByDealerName(global_selectDealerSelection);
         //onDealerInputBlur2();
     }
 
@@ -1776,6 +1780,7 @@ function deleteRetailByDealerName(dealerName) {
 
         //save to storage
         localStorage['mohawkRetail'] = JSON.stringify(filteredDealer);
+        $("#tbodyRetail").empty();
     }
 }
 
