@@ -311,6 +311,14 @@ $(document).ready(function () {
         return false;
     });
 
+    $("input").keyup(function (event) {
+        
+        if (event.keyCode === 13) {
+            
+            $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+        }
+    });
+
     setDealerList('');
 
     /* Tabs Activiation
@@ -945,6 +953,7 @@ var supports_html5_storage = function () {
 function onInputKeyup() {
 
     $(this).val(formatInputToNumber($(this).val()));
+
 
 }
 
