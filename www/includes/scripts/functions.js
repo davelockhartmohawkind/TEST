@@ -3095,6 +3095,7 @@ function onSaveDealerClick() {
     renameWholesaleByDealerName(selectedDealerName, newDealerName);
     renameRetailByDealerName(selectedDealerName, newDealerName);
     setDealerList(newDealerName);
+    
     // hideButtons();
 }
 
