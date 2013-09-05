@@ -270,6 +270,13 @@ $(document).ready(function () {
     });
 
     $('#btnAddDealer').click(onAddDealerBtnClick);
+    $("#inputDealerSelection").keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            onAddDealerBtnClick();
+        }
+    });
 
     //$("#radioCarpetOnly").click(onDealerInputBlur2);
     //$("#radioInstalled").click(onDealerInputBlur2);
@@ -290,19 +297,47 @@ $(document).ready(function () {
     $("#checkboxCushion").click(onDealerInputBlur2);
     $("#inputCushion").blur(onDealerInputBlur2);
     $("#inputCushion").focus(ClearOnInputFocus);
+    $("#inputCushion").keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur(); 
+        }
+    });
 
     $("#checkboxInstallation").click(onDealerInputBlur2);
     $("#inputInstallation").blur(onDealerInputBlur2);
     $("#inputInstallation").focus(ClearOnInputFocus);
+    $("#inputInstallation").keyup(function (event) {
 
+        if (event.keyCode === 13) {
+
+            $(this).blur();
+        }
+    });
 
     $("#checkboxFreight").click(onDealerInputBlur2);
     $("#inputFreight").blur(onDealerInputBlur2);
     $("#inputFreight").focus(ClearOnInputFocus);
+    $("#inputFreight").keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur();
+        }
+    });
+
 
     $("#checkboxOther").click(onDealerInputBlur2);
     $("#inputOther").blur(onDealerInputBlur2);
     $("#inputOther").focus(ClearOnInputFocus);
+    $("#inputOther").keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur();
+        }
+    });
 
     $("#products_remove").click(clearAllProducts);
     $("#product_add").click(addProduct)
@@ -2653,6 +2688,15 @@ function setDealerList(dealerName) {
             $("#button_edt_prosm" + index).click(function () {
                 editProfile(index, dealer.name);
             });
+
+            $("#input_profile_" + index ).keyup(function (event) {
+
+                if (event.keyCode === 13) {
+
+                    editProfile(index, dealer.name);
+                }
+            });
+
 
             $("#button_edt_x_" + index).click(function () {
                 deleteProfile(index, dealer.name);
