@@ -2612,7 +2612,7 @@ function setDealerList(dealerName) {
             newEntry = newEntry + '  >' + dealer.name + '</h2>';
 
             newEntry = newEntry + '                         <div class="namedit_wrapper" >';
-            newEntry = newEntry + '                         <form id="name_editor_' + index + '" name="name_editor" action="" method="post" onsubmit="applyProfile(\'' + index + '\');" class="fit30">';
+            newEntry = newEntry + '                         <form id="name_editor_' + index + '" name="name_editor" action="" method="post" onsubmit="applyProfile(\'' + index + '\',\'' + dealer.name  + '\');" class="fit30">';
             newEntry = newEntry + '                         	<input type="hidden" name="profile_id" value="' + index + '" />';
             newEntry = newEntry + '                             <input type="hidden" id="profile_name_' + index + '" name="profile_name" value="' + dealer.name + '" />';
             newEntry = newEntry + '                         	<input type="text" id="input_profile_' + index + '" name="profile_' + index + '" size="25" class="namedit" value="' + dealer.name + '" />';
