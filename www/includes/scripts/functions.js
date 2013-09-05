@@ -2212,8 +2212,23 @@ function addRow(wholesaleProduct, wholesaleAmount, retailYd, retailFt, boolInclu
 
     $("#wholesaleCost_" + itemId).blur(onWholesaleCostSaveButtonClick);
     $("#wholesaleCost_" + itemId).focus(ClearOnInputFocus);
+    $("#wholesaleCost_" + itemId).keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+        }
+    });
    
     $("#wholesaleProduct_" + itemId).blur(onWholesaleCostSaveButtonClick);
+    $("#wholesaleProduct_" + itemId).keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+        }
+    });
+
     $("#tableWholesale").trigger("create");
 
     //if (setFocus == true) {
@@ -2327,11 +2342,34 @@ function addRetailRow(retailProduct, retailAmountYd, retailAmountFt, wholesaleYd
     $("#retailCostFt_" + itemId).focus(ClearOnInputFocus);
     $("#retailCost_" + itemId).focus(ClearOnInputFocus);
 
+    $("#retailCost_" + itemId ).keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+        }
+    });
+    $("#retailCostFt_" + itemId ).keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+        }
+    });
+
     //$("#retailCost_" + itemId).click(onSetRetailYd);
     //$("#retailCostFt_" + itemId).click(onSetRetailFt);
 
 
     $("#retailProduct_" + itemId).blur(onRetailCostSaveButtonClick);
+    $("#retailProduct_" + itemId).keyup(function (event) {
+
+        if (event.keyCode === 13) {
+
+            $(this).blur(); //iOS likes to keep the keyboard open ... so remove focus to close it
+        }
+    });
+
     $("#btnretailCostSave_" + itemId).click(onRetailCostSaveButtonClick);
 
     $("#tableRetail").trigger("create");
