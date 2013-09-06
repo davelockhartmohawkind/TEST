@@ -3229,6 +3229,8 @@ function saveDealer() {
         profitMargin = global_tmpInputProfitMarginOrMarkup;
     }
 
+    $("#slider").slider('option', 'value', parseInt(profitMargin));
+
     // var carpetonly = $("#radioCarpetOnly").is(':checked').toString();
     var carpetonly = global_carpetOnly;
     var markup = $("#inputProfitMarginOrMarkup").val();
