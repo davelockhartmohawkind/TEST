@@ -1001,7 +1001,7 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 
 .mth { display:none; font-family: 'proxima_novasemibold', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; text-align:left; /*SET WIDTH*/ width:140px; /*background:cyan; float:left;*/ margin-right:10px; }
 #calfactors_header { display:block; }
-
+#calfactors_header2 { display:none; }
 
 /* #Tabs
 ================================================== */
@@ -1127,6 +1127,45 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 ================================================== */
 .tab_wrap { margin:0px; height:auto; min-height:110px; position:relative; }
 
+/* #Slider input styles
+================================================== */
+.slider_wrap { margin-top:15px; padding:0; display:block; height:auto; min-height:20px; position:relative; }
+
+
+#slider{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #d2d2d3;
+	border-radius: 25px;
+	width: 100%;
+	position: absolute;
+	height: 16px;
+	background-color: #8e8d8d;
+	background: url('../../images/ui/bg-track.jpg') repeat top left;
+    left: 0px;
+}
+.ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 28px;
+	height: 28px;
+	cursor: pointer;
+	background: url('../../images/ui/handle2.png') no-repeat 50% 50%;
+	font-weight: bold;
+	color: #1C94C4;
+	outline: none;
+	top: -7px;
+	margin-left: -12px;
+}
+.ui-slider-range {
+	background: #db0000; /* Old browsers */
+	position: absolute;
+	border: 0;
+	top: 0;
+	height: 100%;
+	border-radius: 25px;
+}
+	
 
 /* Javascript Scrolls
 ==================================================*/
@@ -1631,20 +1670,29 @@ a.clearx_l { display:block; width:100%; height:34px; background: url('../../imag
 ==================================================*/
 /* Larger screen sizes */
 @media (min-width: 1500px) {
+	.factorbox { /*width:380px;*/ width:760px; margin:auto; display:block; }
+	.varclear { clear:none; }
 	
+	#calfactors_header2 { display:block; }
 }
 
 
 /* Large screen sizes */
 @media only screen and (min-width: 1200px) and (max-width: 1499px) {
+	.factorbox { /*width:380px;*/ width:760px; margin:auto; display:block; }
+	.varclear { clear:none; }
 	
+	#calfactors_header2 { display:block; }
 }
 
 
 /* Typical screen size and tablet landscape */
 @media only screen and (min-width: 960px) and (max-width: 1199px) {
 	.contentscroll { margin:0px; width:100%; height:auto; min-height:100px; max-height:400px; padding:0px; overflow:auto; background:none; }
-
+	.factorbox { /*width:380px;*/ width:760px; margin:auto; display:block; }
+	.varclear { clear:none; }
+	
+	#calfactors_header2 { display:block; }
 }
 
 

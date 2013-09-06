@@ -11,6 +11,7 @@ var dsTop = String(-(dropShade - (mTab + 4))) + 'px';
 var dsTop2 = String(-(dropShade - (mTab + 4)) - 4) + 'px';
 var dmHeight = String(dropWrapper) + 'px';
 var platform = '';
+var is_touch_device = 'ontouchstart' in document.documentElement;
 
 var target_action = '';
 var target_profile = 'Select Dealer Here';
@@ -149,22 +150,32 @@ $(document).ready(function () {
 
 
     // Fix Keyboard Toggle for iOS
-    // Check if it is an iOS device
-    if (/(iPhone|iPod|iPad)/i.test(navigator.userAgent)) {
-        if (/OS [2-4]_\d(_\d)? like Mac OS X/i.test(navigator.userAgent)) {
-            // iOS 2-5 
-            platform = "oldiOS";
-        } else if (/CPU like Mac OS X/i.test(navigator.userAgent)) {
-            // iOS 1 
-            platform = "oldiOS";
-        } else {
-            // iOS 6 
-            platform = "iOS";
-        }
-    }
+    /*	// Check if it is an iOS device
+     if(/(iPhone|iPod|iPad)/i.test(navigator.userAgent)) { 
+         if(/OS [2-4]_\d(_\d)? like Mac OS X/i.test(navigator.userAgent)) {  
+             // iOS 2-5 
+             platform = "oldiOS";  
+         } else if(/CPU like Mac OS X/i.test(navigator.userAgent)) {
+             // iOS 1 
+             platform = "oldiOS";  
+         } else {
+             // iOS 6 
+             platform = "iOS";  
+         }
+     }	
+     
+ 
+ if((platform == "oldiOS") && (platform == "iOS")) {
+     $(document).on('blur', 'input, textarea', function() {
+         setTimeout(function() {
+             window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+         }, 0);
+     });
+     
+ }
+ */
 
-
-    if ((platform == "oldiOS") && (platform == "iOS")) {
+    if (is_touch_device == true) {
         $(document).on('blur', 'input, textarea', function () {
             setTimeout(function () {
                 window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
@@ -172,6 +183,7 @@ $(document).ready(function () {
         });
 
     }
+
     window.addEventListener('orientationchange', function () {
         // If dropShade is down, slide up
         var shadeState = $('.dropshade').css('top');
@@ -192,6 +204,33 @@ $(document).ready(function () {
             }, 300, 'easeInQuad', function () {
 
             });
+
+        }
+        else {
+            //alert(shadeState);
+            $('.dropshade').css('top', '-6000px');
+
+            mHeight = $(window).height();
+            dropShade = mHeight - mMargin;
+            dropWrapper = dropShade - mTab;
+            dsHeight = String(dropShade) + 'px';
+            dsTop = String(-(dropShade - (mTab + 4))) + 'px';
+            dmHeight = String(dropWrapper) + 'px';
+
+            var initTop = String(-dropShade) + 'px';
+            $('.dropshade').css('height', dsHeight);
+            $('.dropmenu_wrapper').css('height', dmHeight);
+            $('.dropshade').css('top', initTop);
+
+
+            $('.dropshade').stop().animate({
+                top: dsTop
+            }, 300, 'easeInQuad', function () {
+
+            });
+
+
+
 
         }
 
@@ -492,7 +531,41 @@ $(document).ready(function () {
 
     //onblur="if (this.value=='') this.value='Default Dealer Profile';" onfocus="if (this.value=='Default Dealer Profile') this.value='Default Dealer Profile';"
 
+    // Add custom slider component
+    //Store frequently elements in variables
+    var slider = $('#slider'),
+        input_percent = $('#inputProfitMarginOrMarkup');
 
+
+    //Call the Slider
+    slider.slider({
+        //Config
+        range: "min",
+        min: 1,
+        value: 40,
+
+        start: function (event, ui) {
+            //
+        },
+
+        //Slider Event
+        slide: function (event, ui) { //When the slider is sliding
+
+            var value = slider.slider('value');
+
+            input_percent.val(ui.value);  //Adjust the input accordingly	
+
+        },
+
+        stop: function (event, ui) {
+            input_percent.blur();
+        },
+    });
+
+
+    $('#input_percent').blur(function () {
+        $("#slider").slider('option', 'value', parseInt($(this).val()));
+    });
 
 
 

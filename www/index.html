@@ -53,8 +53,10 @@
 
     	<script src="includes/jquery/jquery.min.js"></script>
         <script src="includes/jquery/jquery.easing.1.3.js"></script>
-     
         <script src="includes/scripts/jquery.client.js"></script>
+        <script src="includes/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="includes/jquery/jquery.ui.touch-punch.min.js"></script>
+
 		<script src="includes/scripts/functions.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="includes/scripts/index.js"></script>
@@ -292,6 +294,11 @@
                             </div>
                             <div class="clear"></div>
                     	</div>
+                         <!-- Slider Input Option -->
+                        <div class="slider_wrap">
+                            <div id="slider"></div> <!-- the Slider -->
+                            <div class="clear"></div>
+                        </div>
                     </div>
                     
                     <div class="half2full">
@@ -367,8 +374,25 @@
                                                 <h5>Include <br />in Profit</h5>
                                             </div>
                                         </div>
-                                        <div class="clear"></div>
+                                        <div class="varclear"></div>
                                     	<!-- Form Fields Header: END -->
+
+
+                                         <!-- Form Fields Header TABLET LANDSCAPE: BEGIN -->
+                                        <div id="calfactors_header2">
+                                            <div class="valuefields lone">
+                                            </div>
+                                            
+                                            <div class="profitmarks">
+                                                <h5>Include <br />in Profit</h5>
+                                            </div>
+                                        </div>
+                                        <div class="varclear"></div>
+                                    	<!-- Form Fields Header TABLET LANDSCAPE: END -->
+                                        
+
+
+
                                         
                                         <!-- Cushion Cost: BEGIN -->
                                     	<div class="valuefields">
@@ -404,7 +428,7 @@
                                         	<h5 class="mobileonly"> Include in Profit</h5>
                                             <input type="checkbox" name="checkboxCushion" id="checkboxCushion" class="mcheckbox" /><label for="checkboxCushion"></label>
                                         </div>
-                                        <div class="clear"></div>
+                                        <div class="varclear"></div>
                                     	<!-- Cushion Cost: END -->
                                         
                                         <!-- Installation Cost: BEGIN -->
@@ -441,7 +465,7 @@
                                         	<h5 class="mobileonly"> Include in Profit</h5>
                                             <input type="checkbox" name="checkboxInstallation" id="checkboxInstallation" class="mcheckbox" /><label for="checkboxInstallation"></label>
                                         </div>
-                                        <div class="clear"></div>
+                                        <div class="varclear"></div>
                                     	<!-- Installation Cost: END -->
                                         
                                         <!-- Freight Cost: BEGIN -->
@@ -478,7 +502,7 @@
                                         	<h5 class="mobileonly"> Include in Profit</h5>
                                             <input type="checkbox" name="checkboxFreight" id="checkboxFreight" class="mcheckbox" /><label for="checkboxFreight"></label>
                                         </div>
-                                        <div class="clear"></div>
+                                        <div class="varclear"></div>
                                     	<!-- Freight Cost: END -->
                                         
                                         <!-- Other Cost: BEGIN -->
@@ -515,7 +539,7 @@
                                         	<h5 class="mobileonly"> Include in Profit</h5>
                                             <input type="checkbox" name="checkboxOther" id="checkboxOther" class="mcheckbox" /><label for="checkboxOther"></label>
                                         </div>
-                                        <div class="clear"></div>
+                                        <div class="varclear"></div>
                                     	<!-- Other Cost: END -->
                                     
                                     <div class="spacer5"></div>
@@ -937,7 +961,7 @@
                 
                 <div class="spacer3"></div>
             
-            <h5 style="text-align:right">V&nbsp;1.1.36</h5>
+            <h5 style="text-align:right">V&nbsp;1.1.37</h5>
             
 
             
